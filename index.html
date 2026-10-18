@@ -12,8 +12,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
     <!-- Phosphor Icons -->
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
-    <!-- QRious Library for reliable Canvas QR Generation -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
+    <!-- QRCode-Generator Library with Full UTF-8 Matrix Control -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
 
     <script>
         tailwind.config = {
@@ -139,30 +139,30 @@
 <body class="min-h-screen text-slate-900 pb-16 selection:bg-vibe-pink selection:text-white">
 
     <!-- Top Marquee / Banner -->
-    <div class="bg-slate-900 text-vibe-lime font-display text-sm py-2 px-4 border-b-4 border-slate-900 overflow-hidden whitespace-nowrap flex items-center justify-center gap-4">
-        <span class="inline-flex items-center gap-1 font-bold"><i class="ph-fill ph-sparkle text-vibe-pink"></i> TẠO MÃ QR CHUẨN GU GEN Z</span>
+    <div class="bg-slate-900 text-vibe-lime font-display text-xs sm:text-sm py-2.5 px-4 border-b-4 border-slate-900 overflow-hidden whitespace-nowrap flex items-center justify-center gap-3 sm:gap-4">
+        <span class="inline-flex items-center gap-1 font-bold"><i class="ph-fill ph-sparkle text-vibe-pink"></i> CHUẨN UTF-8 TIẾNG VIỆT</span>
         <span>•</span>
-        <span class="hidden sm:inline-flex items-center gap-1">MIỄN PHÍ 100% <i class="ph-fill ph-fire text-vibe-yellow"></i></span>
+        <span class="inline-flex items-center gap-1 font-bold">QUÉT 100% MỌI DÒNG MÁY <i class="ph-fill ph-seal-check text-vibe-cyan"></i></span>
         <span class="hidden sm:inline">•</span>
-        <span class="inline-flex items-center gap-1">KHÔNG QUẢNG CÁO <i class="ph-fill ph-shooting-star text-vibe-cyan"></i></span>
+        <span class="hidden sm:inline-flex items-center gap-1 font-bold">KHÔNG QUẢNG CÁO <i class="ph-fill ph-fire text-vibe-yellow"></i></span>
     </div>
 
     <!-- Header Section -->
-    <header class="max-w-6xl mx-auto pt-8 pb-6 px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-        <div class="flex items-center gap-3">
-            <div class="w-12 h-12 rounded-2xl bg-vibe-pink neo-border shadow-neo-sm flex items-center justify-center text-white text-2xl font-bold rotate-[-6deg]">
+    <header class="max-w-6xl mx-auto pt-6 sm:pt-8 pb-6 px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div class="flex items-center gap-3.5">
+            <div class="w-12 h-12 rounded-2xl bg-vibe-pink neo-border shadow-neo-sm flex items-center justify-center text-white text-2xl font-bold rotate-[-6deg] shrink-0">
                 <i class="ph-bold ph-qr-code"></i>
             </div>
             <div>
-                <h1 class="font-display text-3xl sm:text-4xl font-extrabold tracking-tight flex items-center gap-2">
+                <h1 class="font-display text-2xl sm:text-4xl font-extrabold tracking-tight flex items-center gap-2">
                     QR VIBE 
-                    <span class="text-xs font-sans font-extrabold bg-vibe-yellow px-2.5 py-1 rounded-full neo-border shadow-neo-sm uppercase tracking-wider rotate-3">PRO MAX</span>
+                    <span class="text-[11px] sm:text-xs font-sans font-extrabold bg-vibe-yellow px-2.5 py-0.5 rounded-full neo-border shadow-neo-sm uppercase tracking-wider rotate-2">PRO MAX</span>
                 </h1>
-                <p class="text-sm text-slate-600 font-semibold">Biến mọi thứ thành mã QR cực nghệ chỉ trong 3 giây ⚡</p>
+                <p class="text-xs sm:text-sm text-slate-600 font-semibold">Biến mọi thứ thành mã QR cực nghệ, quét siêu nhạy ⚡</p>
             </div>
         </div>
 
-        <button onclick="resetAll()" class="neo-btn bg-white px-4 py-2 rounded-xl font-bold text-sm flex items-center gap-2 hover:bg-slate-100">
+        <button onclick="resetAll()" class="neo-btn bg-white px-4 py-2.5 rounded-xl font-bold text-xs sm:text-sm flex items-center gap-2 hover:bg-slate-100">
             <i class="ph-bold ph-arrows-counter-clockwise text-lg text-vibe-purple"></i>
             Làm mới từ đầu
         </button>
@@ -174,65 +174,109 @@
         <!-- LEFT COLUMN: Controls & Customization (7 cols) -->
         <div class="lg:col-span-7 space-y-6">
             
-            <!-- 1. Select QR Type (Tabs) -->
-            <div class="bg-white rounded-3xl p-5 sm:p-6 neo-border shadow-neo">
-                <div class="flex items-center gap-2 mb-4">
-                    <span class="w-7 h-7 rounded-lg bg-vibe-cyan neo-border flex items-center justify-center font-display font-bold text-sm">1</span>
-                    <h2 class="font-display text-xl font-bold">Chọn nội dung muốn tạo</h2>
+            <!-- 1. Select QR Type (4 Distinct Tabs) -->
+            <div class="bg-white rounded-3xl p-4 sm:p-6 neo-border shadow-neo">
+                <div class="flex items-center justify-between mb-4">
+                    <div class="flex items-center gap-2">
+                        <span class="w-7 h-7 rounded-lg bg-vibe-cyan neo-border flex items-center justify-center font-display font-bold text-sm">1</span>
+                        <h2 class="font-display text-lg sm:text-xl font-bold">Chọn nội dung muốn tạo</h2>
+                    </div>
+                    <span class="text-[11px] font-extrabold bg-lime-100 text-slate-800 px-2.5 py-1 rounded-full border-2 border-slate-900">4 Chế độ</span>
                 </div>
 
-                <div class="grid grid-cols-3 gap-3 sm:gap-4" id="tab-buttons">
-                    <button onclick="switchTab('url')" id="tab-url" class="neo-btn bg-vibe-yellow py-3 px-3 rounded-2xl font-bold text-sm sm:text-base flex flex-col sm:flex-row items-center justify-center gap-2">
+                <!-- 4 Tabs: 2x2 on Mobile, 4 cols on Desktop -->
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-3" id="tab-buttons">
+                    <button onclick="switchTab('url')" id="tab-url" class="neo-btn bg-vibe-yellow py-3 px-2.5 rounded-2xl font-bold text-xs sm:text-sm flex flex-col items-center justify-center gap-1.5 text-center">
                         <i class="ph-bold ph-link text-xl"></i>
-                        <span>Link / Chữ</span>
+                        <span>Đường Dẫn (Link)</span>
                     </button>
-                    <button onclick="switchTab('wifi')" id="tab-wifi" class="neo-btn bg-white py-3 px-3 rounded-2xl font-bold text-sm sm:text-base flex flex-col sm:flex-row items-center justify-center gap-2 hover:bg-slate-50">
+                    <button onclick="switchTab('text')" id="tab-text" class="neo-btn bg-white py-3 px-2.5 rounded-2xl font-bold text-xs sm:text-sm flex flex-col items-center justify-center gap-1.5 text-center hover:bg-slate-50">
+                        <i class="ph-bold ph-chat-centered-text text-xl"></i>
+                        <span>Văn Bản (Chữ)</span>
+                    </button>
+                    <button onclick="switchTab('wifi')" id="tab-wifi" class="neo-btn bg-white py-3 px-2.5 rounded-2xl font-bold text-xs sm:text-sm flex flex-col items-center justify-center gap-1.5 text-center hover:bg-slate-50">
                         <i class="ph-bold ph-wifi-high text-xl"></i>
-                        <span>Wi-Fi</span>
+                        <span>Mạng Wi-Fi</span>
                     </button>
-                    <button onclick="switchTab('vcard')" id="tab-vcard" class="neo-btn bg-white py-3 px-3 rounded-2xl font-bold text-sm sm:text-base flex flex-col sm:flex-row items-center justify-center gap-2 hover:bg-slate-50">
+                    <button onclick="switchTab('vcard')" id="tab-vcard" class="neo-btn bg-white py-3 px-2.5 rounded-2xl font-bold text-xs sm:text-sm flex flex-col items-center justify-center gap-1.5 text-center hover:bg-slate-50">
                         <i class="ph-bold ph-identification-card text-xl"></i>
                         <span>Danh Thiếp</span>
                     </button>
                 </div>
 
                 <!-- Tab Forms Container -->
-                <div class="mt-6 pt-6 border-t-2 border-dashed border-slate-300">
+                <div class="mt-5 pt-5 border-t-2 border-dashed border-slate-300">
                     
-                    <!-- TAB 1: URL / TEXT -->
+                    <!-- TAB 1: ĐƯỜNG DẪN (LINK / URL) -->
                     <div id="form-url" class="space-y-4">
                         <div>
-                            <label class="block font-bold text-sm mb-2 flex items-center justify-between">
-                                <span>Nhập đường dẫn (URL) hoặc văn bản bất kỳ: *</span>
-                                <span class="text-xs font-semibold text-vibe-pink bg-rose-100 px-2 py-0.5 rounded-md border border-rose-300">Nhấn "Bắt đầu tạo" để xuất QR</span>
-                            </label>
-                            <textarea id="input-url" rows="3" placeholder="https://tiktok.com/@username hoặc lời nhắn tỏ tình..." class="w-full rounded-2xl p-3.5 neo-input font-medium text-slate-800 placeholder:text-slate-400 resize-none">https://google.com</textarea>
+                            <div class="flex items-center justify-between mb-2 gap-2 flex-wrap">
+                                <label class="font-bold text-sm flex items-center gap-1.5">
+                                    <i class="ph-bold ph-globe text-vibe-purple text-lg"></i>
+                                    <span>Nhập đường dẫn Website / Mạng xã hội: *</span>
+                                </label>
+                                <label class="inline-flex items-center gap-1.5 text-xs font-bold text-slate-600 cursor-pointer select-none bg-slate-100 px-2.5 py-1 rounded-lg border border-slate-300">
+                                    <input type="checkbox" id="auto-https" checked class="w-4 h-4 accent-vibe-purple rounded">
+                                    <span>Tự thêm https://</span>
+                                </label>
+                            </div>
+                            <div class="relative">
+                                <input type="url" id="input-url" value="https://google.com" placeholder="VD: tiktok.com/@username hoặc https://shopee.vn/..." class="w-full rounded-2xl p-3.5 pl-11 neo-input font-medium text-slate-800 placeholder:text-slate-400 text-sm sm:text-base">
+                                <i class="ph-bold ph-link-simple absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 text-lg"></i>
+                            </div>
                         </div>
-                        <!-- Quick Presets -->
+                        <!-- Quick URL Presets -->
                         <div class="flex flex-wrap items-center gap-2 pt-1">
-                            <span class="text-xs font-bold text-slate-500">Mẫu nhanh:</span>
-                            <button onclick="setQuickUrl('https://facebook.com/')" class="text-xs font-bold bg-blue-100 text-blue-800 px-2.5 py-1 rounded-lg border border-blue-300 hover:bg-blue-200 transition">Facebook</button>
-                            <button onclick="setQuickUrl('https://instagram.com/')" class="text-xs font-bold bg-pink-100 text-pink-800 px-2.5 py-1 rounded-lg border border-pink-300 hover:bg-pink-200 transition">Instagram</button>
-                            <button onclick="setQuickUrl('https://tiktok.com/')" class="text-xs font-bold bg-slate-200 text-slate-800 px-2.5 py-1 rounded-lg border border-slate-400 hover:bg-slate-300 transition">TikTok</button>
-                            <button onclick="setQuickUrl('Chúc cậu một ngày tốt lành nha! ✨💖')" class="text-xs font-bold bg-amber-100 text-amber-800 px-2.5 py-1 rounded-lg border border-amber-300 hover:bg-amber-200 transition">Lời nhắn cute</button>
+                            <span class="text-xs font-bold text-slate-500">Chọn nhanh:</span>
+                            <button onclick="setQuickUrl('https://facebook.com/')" class="text-xs font-bold bg-blue-100 text-blue-900 px-2.5 py-1 rounded-lg border border-slate-900 hover:bg-blue-200 transition">Facebook</button>
+                            <button onclick="setQuickUrl('https://instagram.com/')" class="text-xs font-bold bg-pink-100 text-pink-900 px-2.5 py-1 rounded-lg border border-slate-900 hover:bg-pink-200 transition">Instagram</button>
+                            <button onclick="setQuickUrl('https://tiktok.com/@')" class="text-xs font-bold bg-slate-200 text-slate-900 px-2.5 py-1 rounded-lg border border-slate-900 hover:bg-slate-300 transition">TikTok</button>
+                            <button onclick="setQuickUrl('https://youtube.com/')" class="text-xs font-bold bg-red-100 text-red-900 px-2.5 py-1 rounded-lg border border-slate-900 hover:bg-red-200 transition">YouTube</button>
+                            <button onclick="setQuickUrl('https://shopee.vn/')" class="text-xs font-bold bg-orange-100 text-orange-900 px-2.5 py-1 rounded-lg border border-slate-900 hover:bg-orange-200 transition">Shopee</button>
                         </div>
                     </div>
 
-                    <!-- TAB 2: WI-FI -->
+                    <!-- TAB 2: VĂN BẢN (CHỮ TIẾNG VIỆT UTF-8) -->
+                    <div id="form-text" class="space-y-4 hidden">
+                        <div class="bg-amber-50 border-2 border-slate-900 rounded-2xl p-3 text-xs font-semibold flex items-center gap-2.5 text-slate-800">
+                            <i class="ph-fill ph-translate text-xl text-vibe-yellow shrink-0 bg-slate-900 rounded-full p-1"></i>
+                            <span>Hỗ trợ <b>100% Tiếng Việt có dấu (UTF-8)</b> và Emoji. Quét bằng Camera iPhone, Android hay Zalo đều đọc chuẩn từng chữ!</span>
+                        </div>
+                        <div>
+                            <div class="flex items-center justify-between mb-2">
+                                <label class="font-bold text-sm flex items-center gap-1.5">
+                                    <i class="ph-bold ph-article text-vibe-pink text-lg"></i>
+                                    <span>Nhập nội dung văn bản / lời nhắn: *</span>
+                                </label>
+                                <span id="text-char-count" class="text-xs font-extrabold bg-slate-100 px-2.5 py-0.5 rounded-md border border-slate-300 text-slate-600">0 ký tự</span>
+                            </div>
+                            <textarea id="input-text" rows="3" placeholder="Nhập lời nhắn tỏ tình, ghi chú, mật mã, thông tin STK ngân hàng, thơ ca..." class="w-full rounded-2xl p-3.5 neo-input font-medium text-slate-800 placeholder:text-slate-400 resize-none text-sm sm:text-base"></textarea>
+                        </div>
+                        <!-- Quick Text Presets -->
+                        <div class="flex flex-wrap items-center gap-2 pt-1">
+                            <span class="text-xs font-bold text-slate-500">Mẫu chữ có sẵn:</span>
+                            <button onclick="setQuickText('Chúc cậu một ngày mới tràn ngập niềm vui và may mắn nha! ✨💖')" class="text-xs font-bold bg-rose-100 text-rose-900 px-2.5 py-1 rounded-lg border border-slate-900 hover:bg-rose-200 transition">💖 Lời nhắn cute</button>
+                            <button onclick="setQuickText('Ngân hàng: Vietcombank\nSTK: 0123456789\nChủ TK: NGUYEN VAN A\nNội dung: Tra tien tra sua 🧋')" class="text-xs font-bold bg-emerald-100 text-emerald-900 px-2.5 py-1 rounded-lg border border-slate-900 hover:bg-emerald-200 transition">💸 Thông tin STK</button>
+                            <button onclick="setQuickText('Tối nay 7h30 hẹn nhau ở quán cà phê cũ nhé! Đừng đến muộn nha ✨')" class="text-xs font-bold bg-purple-100 text-purple-900 px-2.5 py-1 rounded-lg border border-slate-900 hover:bg-purple-200 transition">☕ Lịch hẹn hò</button>
+                            <button onclick="setQuickText('Ai quét được mã này người đó siêu cấp đáng yêu! 🔥👑')" class="text-xs font-bold bg-amber-100 text-amber-900 px-2.5 py-1 rounded-lg border border-slate-900 hover:bg-amber-200 transition">👑 Troll bạn bè</button>
+                        </div>
+                    </div>
+
+                    <!-- TAB 3: WI-FI -->
                     <div id="form-wifi" class="space-y-4 hidden">
                         <div class="bg-cyan-50 border-2 border-slate-900 rounded-2xl p-3 text-xs font-semibold flex items-center gap-2.5 text-slate-700">
                             <i class="ph-fill ph-info text-xl text-vibe-cyan shrink-0 bg-slate-900 rounded-full p-0.5"></i>
-                            <span>Bạn bè chỉ cần đưa camera vào quét là tự động bắt được Wi-Fi mà không cần hỏi mật khẩu!</span>
+                            <span>Bạn bè chỉ cần đưa camera vào quét là tự động kết nối Wi-Fi mà không cần nhập mật khẩu!</span>
                         </div>
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                             <div>
                                 <label class="block font-bold text-sm mb-1.5">Tên mạng Wi-Fi (SSID) *</label>
-                                <input type="text" id="wifi-ssid" placeholder="VD: TraSuaFullTopping" class="w-full rounded-xl p-3 neo-input font-medium">
+                                <input type="text" id="wifi-ssid" placeholder="VD: TraSuaFullTopping" class="w-full rounded-xl p-3 neo-input font-medium text-sm">
                             </div>
                             <div>
                                 <label class="block font-bold text-sm mb-1.5">Mật khẩu Wi-Fi</label>
                                 <div class="relative">
-                                    <input type="text" id="wifi-pass" placeholder="Nhập mật khẩu..." class="w-full rounded-xl p-3 neo-input font-medium pr-10">
+                                    <input type="text" id="wifi-pass" placeholder="Nhập mật khẩu..." class="w-full rounded-xl p-3 neo-input font-medium pr-10 text-sm">
                                     <i class="ph-bold ph-key absolute right-3.5 top-3.5 text-slate-400 text-lg"></i>
                                 </div>
                             </div>
@@ -240,22 +284,22 @@
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 items-center pt-1">
                             <div>
                                 <label class="block font-bold text-sm mb-1.5">Chuẩn bảo mật</label>
-                                <select id="wifi-type" class="w-full rounded-xl p-3 neo-input font-bold bg-white cursor-pointer">
-                                    <option value="WPA">WPA / WPA2 / WPA3 (Phổ biến nhất)</option>
+                                <select id="wifi-type" class="w-full rounded-xl p-3 neo-input font-bold bg-white cursor-pointer text-sm">
+                                    <option value="WPA">WPA / WPA2 / WPA3 (Phổ biến)</option>
                                     <option value="WEP">WEP</option>
                                     <option value="nopass">Không có mật khẩu</option>
                                 </select>
                             </div>
-                            <div class="pt-4 sm:pt-6">
+                            <div class="pt-2 sm:pt-6">
                                 <label class="inline-flex items-center gap-3 cursor-pointer select-none">
                                     <input type="checkbox" id="wifi-hidden" class="w-5 h-5 accent-vibe-pink rounded cursor-pointer border-2 border-slate-900">
-                                    <span class="font-bold text-sm">Mạng Wi-Fi bị ẩn (Hidden)</span>
+                                    <span class="font-bold text-sm">Mạng Wi-Fi ẩn (Hidden)</span>
                                 </label>
                             </div>
                         </div>
                     </div>
 
-                    <!-- TAB 3: VCARD (CONTACT) -->
+                    <!-- TAB 4: VCARD (CONTACT) -->
                     <div id="form-vcard" class="space-y-4 hidden">
                         <div class="bg-lime-100 border-2 border-slate-900 rounded-2xl p-3 text-xs font-semibold flex items-center gap-2.5 text-slate-800">
                             <i class="ph-fill ph-address-book text-xl text-vibe-lime shrink-0 bg-slate-900 rounded-full p-0.5"></i>
@@ -264,23 +308,23 @@
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                             <div>
                                 <label class="block font-bold text-sm mb-1.5">Họ và Tên *</label>
-                                <input type="text" id="vcard-name" placeholder="VD: Nguyễn Văn Gen Z" class="w-full rounded-xl p-3 neo-input font-medium">
+                                <input type="text" id="vcard-name" placeholder="VD: Nguyễn Văn Gen Z" class="w-full rounded-xl p-3 neo-input font-medium text-sm">
                             </div>
                             <div>
                                 <label class="block font-bold text-sm mb-1.5">Số điện thoại *</label>
-                                <input type="tel" id="vcard-phone" placeholder="VD: 0987654321" class="w-full rounded-xl p-3 neo-input font-medium">
+                                <input type="tel" id="vcard-phone" placeholder="VD: 0987654321" class="w-full rounded-xl p-3 neo-input font-medium text-sm">
                             </div>
                             <div>
                                 <label class="block font-bold text-sm mb-1.5">Email</label>
-                                <input type="email" id="vcard-email" placeholder="genz@gmail.com" class="w-full rounded-xl p-3 neo-input font-medium">
+                                <input type="email" id="vcard-email" placeholder="genz@gmail.com" class="w-full rounded-xl p-3 neo-input font-medium text-sm">
                             </div>
                             <div>
                                 <label class="block font-bold text-sm mb-1.5">Công ty / Trường học</label>
-                                <input type="text" id="vcard-org" placeholder="VD: Đại học Bách Khoa / Freelancer" class="w-full rounded-xl p-3 neo-input font-medium">
+                                <input type="text" id="vcard-org" placeholder="VD: ĐH Bách Khoa / Creator" class="w-full rounded-xl p-3 neo-input font-medium text-sm">
                             </div>
                             <div class="sm:col-span-2">
                                 <label class="block font-bold text-sm mb-1.5">Website / Link Bio</label>
-                                <input type="url" id="vcard-url" placeholder="https://beacons.ai/username" class="w-full rounded-xl p-3 neo-input font-medium">
+                                <input type="url" id="vcard-url" placeholder="https://beacons.ai/username" class="w-full rounded-xl p-3 neo-input font-medium text-sm">
                             </div>
                         </div>
                     </div>
@@ -289,138 +333,148 @@
             </div>
 
             <!-- 2. Customize Design & Colors -->
-            <div class="bg-white rounded-3xl p-5 sm:p-6 neo-border shadow-neo">
-                <div class="flex items-center justify-between mb-5">
+            <div class="bg-white rounded-3xl p-4 sm:p-6 neo-border shadow-neo">
+                <div class="flex items-center justify-between mb-4">
                     <div class="flex items-center gap-2">
                         <span class="w-7 h-7 rounded-lg bg-vibe-pink text-white neo-border flex items-center justify-center font-display font-bold text-sm">2</span>
-                        <h2 class="font-display text-xl font-bold">Độ chế giao diện & Màu sắc</h2>
+                        <h2 class="font-display text-lg sm:text-xl font-bold">Độ chế giao diện & Màu sắc</h2>
                     </div>
                     <span class="text-xs font-bold bg-slate-100 px-2.5 py-1 rounded-full border border-slate-300">Tùy chỉnh</span>
                 </div>
 
-                <div class="space-y-6">
+                <div class="space-y-5">
                     <!-- Color Pickers -->
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <div class="p-3.5 rounded-2xl bg-slate-50 neo-border flex items-center justify-between">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                        <div class="p-3 rounded-2xl bg-slate-50 neo-border flex items-center justify-between">
                             <div>
-                                <span class="block font-bold text-sm">Màu chấm QR</span>
+                                <span class="block font-bold text-sm">Màu chấm QR (Đậm)</span>
                                 <span id="fg-hex-label" class="text-xs font-mono text-slate-500 uppercase">#0F172A</span>
                             </div>
-                            <div class="flex items-center gap-2">
-                                <input type="color" id="qr-fg-color" value="#0F172A" class="w-11 h-11 rounded-xl cursor-pointer neo-border bg-white p-0.5">
-                            </div>
+                            <input type="color" id="qr-fg-color" value="#0F172A" class="w-11 h-11 rounded-xl cursor-pointer neo-border bg-white p-0.5 shrink-0">
                         </div>
 
-                        <div class="p-3.5 rounded-2xl bg-slate-50 neo-border flex items-center justify-between">
+                        <div class="p-3 rounded-2xl bg-slate-50 neo-border flex items-center justify-between">
                             <div>
-                                <span class="block font-bold text-sm">Màu nền (Background)</span>
+                                <span class="block font-bold text-sm">Màu nền (Sáng)</span>
                                 <span id="bg-hex-label" class="text-xs font-mono text-slate-500 uppercase">#FFFFFF</span>
                             </div>
-                            <div class="flex items-center gap-2">
-                                <input type="color" id="qr-bg-color" value="#FFFFFF" class="w-11 h-11 rounded-xl cursor-pointer neo-border bg-white p-0.5">
-                            </div>
+                            <input type="color" id="qr-bg-color" value="#FFFFFF" class="w-11 h-11 rounded-xl cursor-pointer neo-border bg-white p-0.5 shrink-0">
                         </div>
                     </div>
 
-                    <!-- Vibe Color Presets -->
+                    <!-- Contrast Warning Box (Hidden unless user picks bad contrast) -->
+                    <div id="contrast-warning" class="hidden bg-rose-100 border-2 border-slate-900 rounded-2xl p-3 text-xs font-bold text-rose-900 flex items-center justify-between gap-2">
+                        <div class="flex items-center gap-2">
+                            <i class="ph-fill ph-warning-octagon text-xl text-vibe-pink shrink-0"></i>
+                            <span>Màu chấm đang sáng hơn màu nền hoặc quá nhạt, một số máy quét có thể không đọc được!</span>
+                        </div>
+                        <button onclick="applyColorPreset('#0F172A', '#FFFFFF')" class="neo-btn bg-white px-2.5 py-1 rounded-lg text-[11px] shrink-0">Sửa ngay</button>
+                    </div>
+
+                    <!-- Vibe Color Presets (High-contrast scan-safe palettes) -->
                     <div>
-                        <label class="block font-bold text-xs uppercase tracking-wider text-slate-500 mb-2.5">Bảng màu Vibe có sẵn (Chọn nhanh):</label>
-                        <div class="flex flex-wrap gap-2.5">
-                            <button onclick="applyColorPreset('#0F172A', '#FFFFFF')" class="neo-btn px-3 py-1.5 rounded-xl text-xs font-bold flex items-center gap-2 bg-white">
-                                <span class="w-4 h-4 rounded-full bg-slate-900 border border-slate-400"></span> Kinh điển
+                        <label class="block font-bold text-xs uppercase tracking-wider text-slate-500 mb-2.5">Bảng màu Vibe chuẩn độ tương phản (Quét nhạy 100%):</label>
+                        <div class="grid grid-cols-2 sm:grid-cols-3 gap-2">
+                            <button onclick="applyColorPreset('#0F172A', '#FFFFFF')" class="neo-btn px-3 py-2 rounded-xl text-xs font-bold flex items-center gap-2 bg-white">
+                                <span class="w-4 h-4 rounded-full bg-slate-900 border border-slate-400 shrink-0"></span>
+                                <span class="truncate">Kinh điển</span>
                             </button>
-                            <button onclick="applyColorPreset('#7C3AED', '#F3E8FF')" class="neo-btn px-3 py-1.5 rounded-xl text-xs font-bold flex items-center gap-2 bg-purple-50 text-purple-950">
-                                <span class="w-4 h-4 rounded-full bg-purple-600 border border-slate-900"></span> Tím Mộng Mơ
+                            <button onclick="applyColorPreset('#581C87', '#FAF5FF')" class="neo-btn px-3 py-2 rounded-xl text-xs font-bold flex items-center gap-2 bg-purple-50 text-purple-950">
+                                <span class="w-4 h-4 rounded-full bg-purple-900 border border-slate-900 shrink-0"></span>
+                                <span class="truncate">Tím Mộng Mơ</span>
                             </button>
-                            <button onclick="applyColorPreset('#BE123C', '#FFE4E6')" class="neo-btn px-3 py-1.5 rounded-xl text-xs font-bold flex items-center gap-2 bg-rose-50 text-rose-950">
-                                <span class="w-4 h-4 rounded-full bg-rose-700 border border-slate-900"></span> Hồng Cháy Phố
+                            <button onclick="applyColorPreset('#881337', '#FFF1F2')" class="neo-btn px-3 py-2 rounded-xl text-xs font-bold flex items-center gap-2 bg-rose-50 text-rose-950">
+                                <span class="w-4 h-4 rounded-full bg-rose-900 border border-slate-900 shrink-0"></span>
+                                <span class="truncate">Hồng Cháy Phố</span>
                             </button>
-                            <button onclick="applyColorPreset('#0F172A', '#A3E635')" class="neo-btn px-3 py-1.5 rounded-xl text-xs font-bold flex items-center gap-2 bg-lime-300 text-slate-900">
-                                <span class="w-4 h-4 rounded-full bg-slate-900 border border-white"></span> Xanh Neon
+                            <button onclick="applyColorPreset('#064E3B', '#ECFDF5')" class="neo-btn px-3 py-2 rounded-xl text-xs font-bold flex items-center gap-2 bg-emerald-50 text-emerald-950">
+                                <span class="w-4 h-4 rounded-full bg-emerald-900 border border-slate-900 shrink-0"></span>
+                                <span class="truncate">Xanh Lục Bảo</span>
                             </button>
-                            <button onclick="applyColorPreset('#0369A1', '#E0F2FE')" class="neo-btn px-3 py-1.5 rounded-xl text-xs font-bold flex items-center gap-2 bg-sky-100 text-sky-950">
-                                <span class="w-4 h-4 rounded-full bg-sky-700 border border-slate-900"></span> Ocean Chill
+                            <button onclick="applyColorPreset('#0C4A6E', '#F0F9FF')" class="neo-btn px-3 py-2 rounded-xl text-xs font-bold flex items-center gap-2 bg-sky-50 text-sky-950">
+                                <span class="w-4 h-4 rounded-full bg-sky-900 border border-slate-900 shrink-0"></span>
+                                <span class="truncate">Ocean Chill</span>
                             </button>
-                            <button onclick="applyColorPreset('#FDE047', '#0F172A')" class="neo-btn px-3 py-1.5 rounded-xl text-xs font-bold flex items-center gap-2 bg-slate-900 text-yellow-300">
-                                <span class="w-4 h-4 rounded-full bg-yellow-300 border border-slate-900"></span> Cyber Night
+                            <button onclick="applyColorPreset('#0F172A', '#FEF08A')" class="neo-btn px-3 py-2 rounded-xl text-xs font-bold flex items-center gap-2 bg-yellow-200 text-slate-900">
+                                <span class="w-4 h-4 rounded-full bg-slate-900 border border-white shrink-0"></span>
+                                <span class="truncate">Vàng Cyber</span>
                             </button>
                         </div>
                     </div>
 
                     <!-- Size & Error Correction -->
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-2 border-t-2 border-dashed border-slate-200">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 pt-3 border-t-2 border-dashed border-slate-200">
                         <div>
                             <div class="flex justify-between items-center mb-2">
                                 <label class="font-bold text-sm">Kích thước ảnh xuất:</label>
-                                <span id="size-value-label" class="text-xs font-extrabold bg-vibe-lime px-2 py-0.5 rounded-md neo-border">400 x 400 px</span>
+                                <span id="size-value-label" class="text-xs font-extrabold bg-vibe-lime px-2 py-0.5 rounded-md neo-border">500 x 500 px</span>
                             </div>
-                            <input type="range" id="qr-size" min="200" max="800" step="50" value="400" class="w-full">
+                            <input type="range" id="qr-size" min="250" max="800" step="50" value="500" class="w-full">
                             <div class="flex justify-between text-[11px] font-bold text-slate-400 mt-1">
-                                <span>Nhỏ (200px)</span>
-                                <span>Vừa (500px)</span>
+                                <span>Nhỏ (250px)</span>
+                                <span>Chuẩn (500px)</span>
                                 <span>Siêu nét (800px)</span>
                             </div>
                         </div>
 
                         <div>
                             <label class="block font-bold text-sm mb-2">Độ chống lỗi (Error Correction):</label>
-                            <div class="grid grid-cols-4 gap-2" id="ec-buttons">
+                            <div class="grid grid-cols-4 gap-1.5" id="ec-buttons">
                                 <button onclick="setErrorCorrection('L')" data-level="L" class="ec-btn neo-btn py-2 rounded-xl font-bold text-xs bg-white">Thấp (L)</button>
                                 <button onclick="setErrorCorrection('M')" data-level="M" class="ec-btn neo-btn py-2 rounded-xl font-bold text-xs bg-white">Vừa (M)</button>
                                 <button onclick="setErrorCorrection('Q')" data-level="Q" class="ec-btn neo-btn py-2 rounded-xl font-bold text-xs bg-white">Cao (Q)</button>
                                 <button onclick="setErrorCorrection('H')" data-level="H" class="ec-btn neo-btn py-2 rounded-xl font-bold text-xs bg-vibe-yellow">Tối đa (H)</button>
                             </div>
-                            <p class="text-[11px] font-semibold text-slate-500 mt-1.5">💡 Nên để <b>Tối đa (H)</b> khi chèn Logo ở giữa để dễ quét nhất.</p>
+                            <p class="text-[11px] font-semibold text-slate-500 mt-1.5">💡 Tự động bật <b>Tối đa (H)</b> khi chèn Logo để quét nhạy 100%.</p>
                         </div>
                     </div>
                 </div>
             </div>
 
             <!-- 3. Center Logo Upload & Presets -->
-            <div class="bg-white rounded-3xl p-5 sm:p-6 neo-border shadow-neo">
-                <div class="flex items-center justify-between mb-4">
+            <div class="bg-white rounded-3xl p-4 sm:p-6 neo-border shadow-neo">
+                <div class="flex items-center justify-between mb-4 gap-2">
                     <div class="flex items-center gap-2">
-                        <span class="w-7 h-7 rounded-lg bg-vibe-lime neo-border flex items-center justify-center font-display font-bold text-sm">3</span>
-                        <h2 class="font-display text-xl font-bold">Chèn Logo / Icon / Sticker ở giữa</h2>
+                        <span class="w-7 h-7 rounded-lg bg-vibe-lime neo-border flex items-center justify-center font-display font-bold text-sm shrink-0">3</span>
+                        <h2 class="font-display text-lg sm:text-xl font-bold">Chèn Logo / Icon ở giữa</h2>
                     </div>
-                    <button id="remove-logo-btn" onclick="removeLogo()" class="hidden text-xs font-bold text-rose-600 bg-rose-100 px-3 py-1.5 rounded-xl neo-border shadow-neo-sm hover:bg-rose-200 transition flex items-center gap-1">
-                        <i class="ph-bold ph-trash"></i> Xóa Logo/Icon
+                    <button id="remove-logo-btn" onclick="removeLogo()" class="hidden text-xs font-bold text-rose-600 bg-rose-100 px-3 py-1.5 rounded-xl neo-border shadow-neo-sm hover:bg-rose-200 transition flex items-center gap-1 shrink-0">
+                        <i class="ph-bold ph-trash"></i> Xóa Logo
                     </button>
                 </div>
 
                 <!-- Mode Selector Tabs for Center Graphic -->
-                <div class="grid grid-cols-3 gap-2.5 mb-5 bg-slate-100 p-1.5 rounded-2xl neo-border">
-                    <button onclick="switchLogoTab('icon')" id="logo-tab-icon" class=" py-2 px-3 rounded-xl font-bold text-xs sm:text-sm flex items-center justify-center gap-1.5 bg-vibe-yellow neo-border shadow-neo-sm transition">
-                        <i class="ph-bold ph-smiley-sticker text-base"></i>
-                        <span>Kho Icon & Emoji</span>
+                <div class="grid grid-cols-3 gap-2 mb-5 bg-slate-100 p-1.5 rounded-2xl neo-border">
+                    <button onclick="switchLogoTab('icon')" id="logo-tab-icon" class="py-2.5 px-2 rounded-xl font-bold text-xs sm:text-sm flex flex-col sm:flex-row items-center justify-center gap-1 bg-vibe-yellow neo-border shadow-neo-sm transition text-center leading-tight">
+                        <i class="ph-bold ph-smiley-sticker text-base sm:text-lg"></i>
+                        <span>Kho Icon</span>
                     </button>
-                    <button onclick="switchLogoTab('custom')" id="logo-tab-custom" class="py-2 px-3 rounded-xl font-bold text-xs sm:text-sm flex items-center justify-center gap-1.5 bg-transparent hover:bg-white/60 transition">
-                        <i class="ph-bold ph-textbox text-base"></i>
-                        <span>Nhập Chữ / Emoji</span>
+                    <button onclick="switchLogoTab('custom')" id="logo-tab-custom" class="py-2.5 px-2 rounded-xl font-bold text-xs sm:text-sm flex flex-col sm:flex-row items-center justify-center gap-1 bg-transparent hover:bg-white/60 transition text-center leading-tight">
+                        <i class="ph-bold ph-textbox text-base sm:text-lg"></i>
+                        <span>Nhập Chữ</span>
                     </button>
-                    <button onclick="switchLogoTab('upload')" id="logo-tab-upload" class="py-2 px-3 rounded-xl font-bold text-xs sm:text-sm flex items-center justify-center gap-1.5 bg-transparent hover:bg-white/60 transition">
-                        <i class="ph-bold ph-upload-simple text-base"></i>
-                        <span>Tải Ảnh Lên</span>
+                    <button onclick="switchLogoTab('upload')" id="logo-tab-upload" class="py-2.5 px-2 rounded-xl font-bold text-xs sm:text-sm flex flex-col sm:flex-row items-center justify-center gap-1 bg-transparent hover:bg-white/60 transition text-center leading-tight">
+                        <i class="ph-bold ph-upload-simple text-base sm:text-lg"></i>
+                        <span>Tải Ảnh</span>
                     </button>
                 </div>
 
                 <!-- SUB-PANEL 1: KHO ICON & EMOJI TRENDY -->
                 <div id="logo-panel-icon" class="space-y-4">
-                    <!-- Category filter chips -->
                     <div class="flex items-center justify-between flex-wrap gap-2">
                         <div class="flex gap-2">
                             <button onclick="switchStickerCategory('emoji')" id="cat-btn-emoji" class="text-xs font-extrabold px-3 py-1.5 rounded-xl neo-border bg-vibe-pink text-white shadow-neo-sm transition">
                                 🔥 Emoji Gen Z
                             </button>
                             <button onclick="switchStickerCategory('svg')" id="cat-btn-svg" class="text-xs font-extrabold px-3 py-1.5 rounded-xl neo-border bg-white text-slate-800 hover:bg-slate-100 transition">
-                                ⚡ Icon Vector Sắc Nét
+                                ⚡ Icon Vector
                             </button>
                         </div>
                         <span class="text-[11px] font-bold text-slate-500">Chạm là gắn ngay!</span>
                     </div>
 
                     <!-- Trendy Emoji Grid -->
-                    <div id="sticker-grid-emoji" class="grid grid-cols-6 sm:grid-cols-6 gap-2.5">
+                    <div id="sticker-grid-emoji" class="grid grid-cols-6 gap-2">
                         <button onclick="setEmojiLogo('🔥')" class="neo-btn h-11 rounded-xl bg-white text-xl flex items-center justify-center hover:bg-orange-100" title="Cháy">🔥</button>
                         <button onclick="setEmojiLogo('✨')" class="neo-btn h-11 rounded-xl bg-white text-xl flex items-center justify-center hover:bg-yellow-100" title="Lấp lánh">✨</button>
                         <button onclick="setEmojiLogo('👑')" class="neo-btn h-11 rounded-xl bg-white text-xl flex items-center justify-center hover:bg-amber-100" title="Vương miện">👑</button>
@@ -436,41 +490,41 @@
                     </div>
 
                     <!-- Vector SVG Icon Grid -->
-                    <div id="sticker-grid-svg" class="hidden grid-cols-4 sm:grid-cols-6 gap-2.5">
-                        <button onclick="setVectorIconLogo('globe')" class="neo-btn h-11 rounded-xl bg-white text-slate-900 flex flex-col items-center justify-center hover:bg-cyan-100" title="Website / Cầu">
+                    <div id="sticker-grid-svg" class="hidden grid-cols-6 gap-2">
+                        <button onclick="setVectorIconLogo('globe')" class="neo-btn h-11 rounded-xl bg-white text-slate-900 flex items-center justify-center hover:bg-cyan-100" title="Website">
                             <i class="ph-fill ph-globe text-xl"></i>
                         </button>
-                        <button onclick="setVectorIconLogo('wifi')" class="neo-btn h-11 rounded-xl bg-white text-slate-900 flex flex-col items-center justify-center hover:bg-sky-100" title="Wi-Fi">
+                        <button onclick="setVectorIconLogo('wifi')" class="neo-btn h-11 rounded-xl bg-white text-slate-900 flex items-center justify-center hover:bg-sky-100" title="Wi-Fi">
                             <i class="ph-bold ph-wifi-high text-xl"></i>
                         </button>
-                        <button onclick="setVectorIconLogo('phone')" class="neo-btn h-11 rounded-xl bg-white text-slate-900 flex flex-col items-center justify-center hover:bg-lime-100" title="Điện thoại">
+                        <button onclick="setVectorIconLogo('phone')" class="neo-btn h-11 rounded-xl bg-white text-slate-900 flex items-center justify-center hover:bg-lime-100" title="Điện thoại">
                             <i class="ph-fill ph-phone-call text-xl"></i>
                         </button>
-                        <button onclick="setVectorIconLogo('mail')" class="neo-btn h-11 rounded-xl bg-white text-slate-900 flex flex-col items-center justify-center hover:bg-amber-100" title="Email">
+                        <button onclick="setVectorIconLogo('mail')" class="neo-btn h-11 rounded-xl bg-white text-slate-900 flex items-center justify-center hover:bg-amber-100" title="Email">
                             <i class="ph-fill ph-envelope-simple text-xl"></i>
                         </button>
-                        <button onclick="setVectorIconLogo('cart')" class="neo-btn h-11 rounded-xl bg-white text-slate-900 flex flex-col items-center justify-center hover:bg-pink-100" title="Mua sắm">
+                        <button onclick="setVectorIconLogo('cart')" class="neo-btn h-11 rounded-xl bg-white text-slate-900 flex items-center justify-center hover:bg-pink-100" title="Mua sắm">
                             <i class="ph-fill ph-shopping-cart text-xl"></i>
                         </button>
-                        <button onclick="setVectorIconLogo('star')" class="neo-btn h-11 rounded-xl bg-white text-slate-900 flex flex-col items-center justify-center hover:bg-yellow-100" title="Ngôi sao">
+                        <button onclick="setVectorIconLogo('star')" class="neo-btn h-11 rounded-xl bg-white text-slate-900 flex items-center justify-center hover:bg-yellow-100" title="Ngôi sao">
                             <i class="ph-fill ph-star text-xl"></i>
                         </button>
-                        <button onclick="setVectorIconLogo('music')" class="neo-btn h-11 rounded-xl bg-white text-slate-900 flex flex-col items-center justify-center hover:bg-purple-100" title="Nhạc">
+                        <button onclick="setVectorIconLogo('music')" class="neo-btn h-11 rounded-xl bg-white text-slate-900 flex items-center justify-center hover:bg-purple-100" title="Nhạc">
                             <i class="ph-fill ph-music-notes text-xl"></i>
                         </button>
-                        <button onclick="setVectorIconLogo('camera')" class="neo-btn h-11 rounded-xl bg-white text-slate-900 flex flex-col items-center justify-center hover:bg-rose-100" title="Máy ảnh">
+                        <button onclick="setVectorIconLogo('camera')" class="neo-btn h-11 rounded-xl bg-white text-slate-900 flex items-center justify-center hover:bg-rose-100" title="Máy ảnh">
                             <i class="ph-fill ph-camera text-xl"></i>
                         </button>
-                        <button onclick="setVectorIconLogo('link')" class="neo-btn h-11 rounded-xl bg-white text-slate-900 flex flex-col items-center justify-center hover:bg-indigo-100" title="Liên kết">
+                        <button onclick="setVectorIconLogo('link')" class="neo-btn h-11 rounded-xl bg-white text-slate-900 flex items-center justify-center hover:bg-indigo-100" title="Liên kết">
                             <i class="ph-bold ph-link text-xl"></i>
                         </button>
-                        <button onclick="setVectorIconLogo('check')" class="neo-btn h-11 rounded-xl bg-white text-slate-900 flex flex-col items-center justify-center hover:bg-emerald-100" title="Tích xanh">
+                        <button onclick="setVectorIconLogo('check')" class="neo-btn h-11 rounded-xl bg-white text-slate-900 flex items-center justify-center hover:bg-emerald-100" title="Tích xanh">
                             <i class="ph-fill ph-seal-check text-xl"></i>
                         </button>
-                        <button onclick="setVectorIconLogo('heart')" class="neo-btn h-11 rounded-xl bg-white text-slate-900 flex flex-col items-center justify-center hover:bg-red-100" title="Yêu thích">
+                        <button onclick="setVectorIconLogo('heart')" class="neo-btn h-11 rounded-xl bg-white text-slate-900 flex items-center justify-center hover:bg-red-100" title="Yêu thích">
                             <i class="ph-fill ph-heart text-xl"></i>
                         </button>
-                        <button onclick="setVectorIconLogo('location')" class="neo-btn h-11 rounded-xl bg-white text-slate-900 flex flex-col items-center justify-center hover:bg-orange-100" title="Địa điểm">
+                        <button onclick="setVectorIconLogo('location')" class="neo-btn h-11 rounded-xl bg-white text-slate-900 flex items-center justify-center hover:bg-orange-100" title="Địa điểm">
                             <i class="ph-fill ph-map-pin text-xl"></i>
                         </button>
                     </div>
@@ -479,11 +533,11 @@
                 <!-- SUB-PANEL 2: NHẬP EMOJI HOẶC CHỮ TÙY CHỈNH (BADGE) -->
                 <div id="logo-panel-custom" class="hidden space-y-3">
                     <label class="block font-bold text-xs text-slate-600">
-                        Nhập bất kỳ Emoji nào từ bàn phím hoặc chữ viết tắt (tối đa 4 ký tự, VD: <span class="text-vibe-pink">VIP, SẾP, 2K6, 🦊</span>):
+                        Nhập Emoji hoặc chữ ngắn gắn vào tâm QR (tối đa 4 ký tự, VD: <span class="text-vibe-pink">VIP, SẾP, 🦊</span>):
                     </label>
-                    <div class="flex gap-2.5">
-                        <input type="text" id="custom-badge-input" maxlength="4" placeholder="Gõ Emoji hoặc chữ (VD: VIP)..." class="flex-1 rounded-xl p-3 neo-input font-display font-bold text-base uppercase placeholder:normal-case">
-                        <button onclick="applyCustomTextOrEmoji()" class="neo-btn bg-vibe-cyan hover:bg-cyan-300 text-slate-900 font-display font-extrabold px-5 rounded-xl text-sm flex items-center gap-1.5 shrink-0">
+                    <div class="flex flex-col sm:flex-row gap-2.5">
+                        <input type="text" id="custom-badge-input" maxlength="4" placeholder="Gõ chữ ngắn (VD: VIP)..." class="w-full sm:flex-1 rounded-xl p-3 neo-input font-display font-bold text-base uppercase placeholder:normal-case">
+                        <button onclick="applyCustomTextOrEmoji()" class="neo-btn bg-vibe-cyan hover:bg-cyan-300 text-slate-900 font-display font-extrabold py-3 px-5 rounded-xl text-sm flex items-center justify-center gap-1.5 shrink-0">
                             <i class="ph-bold ph-check-circle text-lg"></i>
                             <span>Chèn Ngay</span>
                         </button>
@@ -493,8 +547,8 @@
                         <button onclick="quickCustomBadge('VIP')" class="text-xs font-extrabold bg-amber-100 px-2.5 py-1 rounded-lg border border-slate-900 hover:bg-amber-200">VIP</button>
                         <button onclick="quickCustomBadge('SẾP')" class="text-xs font-extrabold bg-lime-100 px-2.5 py-1 rounded-lg border border-slate-900 hover:bg-lime-200">SẾP</button>
                         <button onclick="quickCustomBadge('YÊU')" class="text-xs font-extrabold bg-rose-100 px-2.5 py-1 rounded-lg border border-slate-900 hover:bg-rose-200">YÊU</button>
-                        <button onclick="quickCustomBadge('QR')" class="text-xs font-extrabold bg-purple-100 px-2.5 py-1 rounded-lg border border-slate-900 hover:bg-purple-200">QR</button>
-                        <button onclick="quickCustomBadge('🧋✨')" class="text-xs font-extrabold bg-cyan-100 px-2.5 py-1 rounded-lg border border-slate-900 hover:bg-cyan-200">🧋✨</button>
+                        <button onclick="quickCustomBadge('2K6')" class="text-xs font-extrabold bg-purple-100 px-2.5 py-1 rounded-lg border border-slate-900 hover:bg-purple-200">2K6</button>
+                        <button onclick="quickCustomBadge('🧋')" class="text-xs font-extrabold bg-cyan-100 px-2.5 py-1 rounded-lg border border-slate-900 hover:bg-cyan-200">🧋</button>
                     </div>
                 </div>
 
@@ -504,58 +558,55 @@
                         <div class="w-11 h-11 rounded-xl bg-white neo-border mx-auto mb-2 flex items-center justify-center text-xl group-hover:scale-110 transition">
                             <i class="ph-bold ph-upload-simple text-vibe-purple"></i>
                         </div>
-                        <span class="block font-bold text-sm text-slate-800">Nhấn để chọn ảnh từ thiết bị của bạn</span>
+                        <span class="block font-bold text-sm text-slate-800">Nhấn để chọn ảnh Logo từ thiết bị</span>
                         <span class="block text-xs text-slate-500 font-medium mt-0.5">Hỗ trợ PNG, JPG, SVG, WEBP</span>
                         <input type="file" id="logo-upload" accept="image/*" class="hidden">
                     </label>
                 </div>
 
-                <!-- BADGE STYLING CONTROLS (Shape, Background Color, Size) -->
+                <!-- BADGE STYLING CONTROLS (Shape, Background Color, Safe Size) -->
                 <div class="mt-5 pt-4 border-t-2 border-dashed border-slate-200 grid grid-cols-1 sm:grid-cols-12 gap-4 items-center">
-                    <!-- Badge Shape -->
                     <div class="sm:col-span-5">
                         <label class="block font-bold text-xs text-slate-500 uppercase mb-1.5">Khung viền Logo:</label>
                         <div class="grid grid-cols-3 gap-1.5" id="badge-shape-btns">
-                            <button onclick="setBadgeShape('rounded')" data-shape="rounded" class="shape-btn neo-btn py-1.5 px-2 rounded-xl font-bold text-xs bg-vibe-yellow">Bo góc</button>
-                            <button onclick="setBadgeShape('circle')" data-shape="circle" class="shape-btn neo-btn py-1.5 px-2 rounded-xl font-bold text-xs bg-white">Tròn</button>
-                            <button onclick="setBadgeShape(' diamond')" data-shape="diamond" class="shape-btn neo-btn py-1.5 px-2 rounded-xl font-bold text-xs bg-white">Kim cương</button>
+                            <button onclick="setBadgeShape('rounded')" data-shape="rounded" class="shape-btn neo-btn py-2 px-1 rounded-xl font-bold text-xs bg-vibe-yellow text-center truncate">Bo góc</button>
+                            <button onclick="setBadgeShape('circle')" data-shape="circle" class="shape-btn neo-btn py-2 px-1 rounded-xl font-bold text-xs bg-white text-center truncate">Tròn</button>
+                            <button onclick="setBadgeShape('diamond')" data-shape="diamond" class="shape-btn neo-btn py-2 px-1 rounded-xl font-bold text-xs bg-white text-center truncate">Kim cương</button>
                         </div>
                     </div>
 
-                    <!-- Badge Colors (Bg & Icon Color) -->
-                    <div class="sm:col-span-3 flex items-center gap-3">
+                    <div class="sm:col-span-3 flex items-center justify-between sm:justify-start gap-4">
                         <div>
                             <label class="block font-bold text-[11px] text-slate-500 uppercase mb-1">Nền khung</label>
-                            <input type="color" id="badge-bg-color" value="#FFFFFF" class="w-10 h-9 rounded-lg cursor-pointer neo-border bg-white p-0.5">
+                            <input type="color" id="badge-bg-color" value="#FFFFFF" class="w-12 h-10 rounded-lg cursor-pointer neo-border bg-white p-0.5">
                         </div>
                         <div>
-                            <label class="block font-bold text-[11px] text-slate-500 uppercase mb-1">Màu Icon/Chữ</label>
-                            <input type="color" id="badge-fg-color" value="#0F172A" class="w-10 h-9 rounded-lg cursor-pointer neo-border bg-white p-0.5">
+                            <label class="block font-bold text-[11px] text-slate-500 uppercase mb-1">Màu chữ/Icon</label>
+                            <input type="color" id="badge-fg-color" value="#0F172A" class="w-12 h-10 rounded-lg cursor-pointer neo-border bg-white p-0.5">
                         </div>
                     </div>
 
-                    <!-- Badge Size Scale -->
                     <div class="sm:col-span-4">
                         <div class="flex justify-between items-center mb-1">
-                            <label class="font-bold text-xs text-slate-500 uppercase">Độ lớn:</label>
-                            <span id="badge-scale-label" class="text-[11px] font-extrabold bg-slate-200 px-1.5 py-0.5 rounded border border-slate-900">22%</span>
+                            <label class="font-bold text-xs text-slate-500 uppercase">Độ lớn an toàn:</label>
+                            <span id="badge-scale-label" class="text-[11px] font-extrabold bg-vibe-lime px-1.5 py-0.5 rounded border border-slate-900">18%</span>
                         </div>
-                        <input type="range" id="badge-scale-slider" min="15" max="28" step="1" value="22" class="w-full">
+                        <input type="range" id="badge-scale-slider" min="12" max="23" step="1" value="18" class="w-full">
                     </div>
                 </div>
             </div>
 
             <!-- 4. Nút Bắt Đầu Tạo & Dòng Trạng Thái -->
-            <div class="bg-white rounded-3xl p-5 sm:p-6 neo-border shadow-neo space-y-4">
-                <button onclick="handleGenerateQR()" class="neo-btn w-full bg-vibe-pink hover:bg-rose-600 text-white font-display font-extrabold text-lg py-4 px-6 rounded-2xl flex items-center justify-center gap-3">
+            <div class="bg-white rounded-3xl p-4 sm:p-6 neo-border shadow-neo space-y-4">
+                <button onclick="handleGenerateQR()" class="neo-btn w-full bg-vibe-pink hover:bg-rose-600 text-white font-display font-extrabold text-base sm:text-lg py-4 px-6 rounded-2xl flex items-center justify-center gap-3">
                     <i class="ph-bold ph-magic-wand text-2xl"></i>
                     <span>BẮT ĐẦU TẠO MÃ QR</span>
                 </button>
 
                 <!-- Dòng hiện trạng thái -->
-                <div id="generation-status-bar" class="neo-border rounded-2xl p-3.5 bg-slate-100 text-slate-700 font-bold text-sm flex items-center justify-center gap-2.5 transition-all">
-                    <i id="status-icon" class="ph-fill ph-info text-xl text-slate-600"></i>
-                    <span id="status-text">Trạng thái: Chưa tạo (Hãy nhập thông tin và nhấn "Bắt đầu tạo")</span>
+                <div id="generation-status-bar" class="neo-border rounded-2xl p-3.5 bg-vibe-lime text-slate-900 font-extrabold text-xs sm:text-sm flex items-center justify-center gap-2.5 transition-all">
+                    <i id="status-icon" class="ph-fill ph-check-circle text-xl text-slate-900 shrink-0"></i>
+                    <span id="status-text">Đã sẵn sàng! Chuẩn mã hóa UTF-8 Tiếng Việt giúp mọi máy quét 100% nhạy.</span>
                 </div>
             </div>
 
@@ -563,50 +614,50 @@
 
         <!-- RIGHT COLUMN: Sticky Live Preview & Export (5 cols) -->
         <div class="lg:col-span-5 lg:sticky lg:top-8">
-            <div class="bg-vibe-purple rounded-3xl p-6 sm:p-7 neo-border shadow-neo-lg text-white relative overflow-hidden">
+            <div class="bg-vibe-purple rounded-3xl p-5 sm:p-7 neo-border shadow-neo-lg text-white relative overflow-hidden">
                 
                 <!-- Decorative background elements -->
                 <div class="absolute -right-8 -top-8 w-28 h-28 bg-vibe-pink rounded-full opacity-40 blur-xl pointer-events-none"></div>
                 <div class="absolute -left-8 -bottom-8 w-28 h-28 bg-vibe-cyan rounded-full opacity-30 blur-xl pointer-events-none"></div>
 
                 <!-- Top Card Header -->
-                <div class="flex items-center justify-between mb-5 relative z-10">
+                <div class="flex items-center justify-between mb-4 relative z-10">
                     <div class="flex items-center gap-2">
                         <span class="inline-block w-3 h-3 rounded-full bg-vibe-lime animate-ping"></span>
-                        <h3 class="font-display font-bold text-lg tracking-wide uppercase">Kết Quả Mã QR</h3>
+                        <h3 class="font-display font-bold text-base sm:text-lg tracking-wide uppercase">Kết Quả Mã QR</h3>
                     </div>
                     <span id="qr-type-badge" class="bg-slate-900 text-vibe-yellow text-xs font-extrabold px-3 py-1 rounded-full border border-white/20">
-                        LINK / TEXT
+                        ĐƯỜNG DẪN (LINK)
                     </span>
                 </div>
 
                 <!-- QR Canvas Wrapper -->
-                <div class="bg-white p-5 rounded-3xl neo-border shadow-neo mx-auto flex flex-col items-center justify-center relative z-10">
-                    <div class="relative w-full aspect-square max-w-[280px] flex items-center justify-center bg-slate-50 rounded-2xl overflow-hidden border-2 border-dashed border-slate-200 p-2">
+                <div class="bg-white p-4 sm:p-5 rounded-3xl neo-border shadow-neo mx-auto flex flex-col items-center justify-center relative z-10">
+                    <div class="relative w-full aspect-square max-w-[280px] flex items-center justify-center bg-slate-50 rounded-2xl overflow-hidden border-2 border-dashed border-slate-200 p-1">
                         <!-- Placeholder before generating -->
-                        <div id="qr-empty-placeholder" class="flex flex-col items-center justify-center text-center p-4 text-slate-400">
+                        <div id="qr-empty-placeholder" class="hidden flex-col items-center justify-center text-center p-4 text-slate-400">
                             <i class="ph-duotone ph-qr-code text-6xl text-slate-300 mb-2"></i>
-                            <p class="font-bold text-xs text-slate-500">Mã QR sẽ xuất hiện tại đây sau khi bạn nhấn nút <span class="text-vibe-pink">"Bắt đầu tạo"</span></p>
+                            <p class="font-bold text-xs text-slate-500">Nhập nội dung và nhấn <span class="text-vibe-pink">"Bắt đầu tạo"</span> để xuất mã QR</p>
                         </div>
                         <!-- Main QR Canvas -->
-                        <canvas id="qr-canvas" class="hidden w-full h-full object-contain rounded-xl transition-transform duration-300 hover:scale-[1.02]"></canvas>
+                        <canvas id="qr-canvas" class="w-full h-full object-contain rounded-xl transition-transform duration-300 hover:scale-[1.02]"></canvas>
                     </div>
 
                     <!-- Scan status pill -->
-                    <div id="scan-hint-pill" class="mt-4 flex items-center gap-2 bg-slate-100 px-3.5 py-1.5 rounded-full border border-slate-300 text-slate-700 text-xs font-bold">
-                        <i class="ph-fill ph-sparkle text-vibe-purple text-base"></i>
-                        <span id="scan-hint-text">Đang chờ lệnh tạo mã QR từ bạn...</span>
+                    <div id="scan-hint-pill" class="mt-3.5 flex items-center gap-2 bg-lime-100 px-3.5 py-1.5 rounded-full border-2 border-slate-900 text-slate-900 text-xs font-extrabold text-center">
+                        <i class="ph-fill ph-seal-check text-vibe-purple text-base shrink-0"></i>
+                        <span id="scan-hint-text">Chuẩn UTF-8 • Quét mượt 100% trên iOS, Android & Zalo</span>
                     </div>
                 </div>
 
                 <!-- Action Buttons: Download & Copy -->
-                <div class="mt-6 space-y-3 relative z-10">
-                    <button onclick="downloadQR()" class="neo-btn w-full bg-vibe-lime hover:bg-lime-300 text-slate-900 font-display font-extrabold text-base py-4 px-6 rounded-2xl flex items-center justify-center gap-2.5">
+                <div class="mt-5 space-y-3 relative z-10">
+                    <button onclick="downloadQR()" class="neo-btn w-full bg-vibe-lime hover:bg-lime-300 text-slate-900 font-display font-extrabold text-sm sm:text-base py-4 px-5 rounded-2xl flex items-center justify-center gap-2.5">
                         <i class="ph-bold ph-download-simple text-xl"></i>
                         <span>TẢI MÃ QR VỀ MÁY (PNG)</span>
                     </button>
 
-                    <button onclick="copyQRToClipboard()" class="neo-btn w-full bg-white hover:bg-slate-100 text-slate-900 font-display font-bold text-sm py-3.5 px-6 rounded-2xl flex items-center justify-center gap-2">
+                    <button onclick="copyQRToClipboard()" class="neo-btn w-full bg-white hover:bg-slate-100 text-slate-900 font-display font-bold text-xs sm:text-sm py-3.5 px-5 rounded-2xl flex items-center justify-center gap-2">
                         <i class="ph-bold ph-copy text-lg text-vibe-purple"></i>
                         <span>Sao chép ảnh QR vào Clipboard</span>
                     </button>
@@ -614,7 +665,7 @@
 
                 <!-- Summary Info Footer -->
                 <div class="mt-5 pt-4 border-t border-white/20 flex items-center justify-between text-xs font-semibold text-purple-100">
-                    <span id="summary-dimensions">Kích thước: 400x400px</span>
+                    <span id="summary-dimensions">Kích thước: 500x500px</span>
                     <span id="summary-ec">Chống lỗi: Mức H (30%)</span>
                 </div>
             </div>
@@ -623,8 +674,8 @@
     </main>
 
     <!-- Custom Toast Notification (No alert() used) -->
-    <div id="toast-container" class="fixed bottom-6 right-6 z-50 transform translate-y-24 opacity-0 pointer-events-none transition-all duration-300">
-        <div class="bg-slate-900 text-white neo-border shadow-neo px-5 py-3.5 rounded-2xl flex items-center gap-3 max-w-sm">
+    <div id="toast-container" class="fixed bottom-5 right-5 left-5 sm:left-auto z-50 transform translate-y-28 opacity-0 pointer-events-none transition-all duration-300 flex justify-center sm:block">
+        <div class="bg-slate-900 text-white neo-border shadow-neo px-4 py-3.5 rounded-2xl flex items-center gap-3 max-w-sm w-full">
             <div id="toast-icon" class="w-8 h-8 rounded-xl bg-vibe-lime text-slate-900 flex items-center justify-center font-bold text-lg shrink-0">
                 <i class="ph-bold ph-check"></i>
             </div>
@@ -637,20 +688,25 @@
 
     <!-- Application Logic -->
     <script>
+        // CRITICAL FIX: Enable true UTF-8 byte encoding for Vietnamese text & Emojis across all scanners
+        if (typeof qrcode !== 'undefined' && qrcode.stringToBytesFuncs && qrcode.stringToBytesFuncs['UTF-8']) {
+            qrcode.stringToBytes = qrcode.stringToBytesFuncs['UTF-8'];
+        }
+
         // --- APPLICATION STATE ---
         const state = {
-            activeTab: 'url', // 'url' | 'wifi' | 'vcard'
+            activeTab: 'url', // 'url' | 'text' | 'wifi' | 'vcard'
             fgColor: '#0F172A',
             bgColor: '#FFFFFF',
-            size: 400,
+            size: 500,
             ecLevel: 'H', // 'L', 'M', 'Q', 'H'
-            logoImage: null, // Image object if uploaded or generated from emoji/icon/text
+            logoImage: null,
             logoSource: null, // { type: 'emoji'|'svg'|'text'|'upload', value: string }
             badgeShape: 'rounded', // 'rounded' | 'circle' | 'diamond'
             badgeBgColor: '#FFFFFF',
             badgeFgColor: '#0F172A',
-            badgeScale: 0.22,
-            isGenerated: false
+            badgeScale: 0.18, // Default 18% for 100% scan safety
+            isGenerated: true
         };
 
         // SVG Vector Paths (24x24 viewBox) for crisp rendering on Canvas
@@ -673,17 +729,26 @@
         const canvas = document.getElementById('qr-canvas');
         const ctx = canvas.getContext('2d');
 
-        // Initialize QRious instance on an offscreen canvas so we can composite the logo cleanly
-        const offscreenCanvas = document.createElement('canvas');
-        const qrEngine = new QRious({
-            element: offscreenCanvas,
-            size: state.size,
-            value: 'https://google.com',
-            level: state.ecLevel,
-            foreground: state.fgColor,
-            background: state.bgColor,
-            padding: 16
-        });
+        // --- COLOR CONTRAST CHECKER FOR SCAN RELIABILITY ---
+        function hexToLuminance(hex) {
+            const clean = hex.replace('#', '');
+            const r = parseInt(clean.substring(0, 2), 16) / 255;
+            const g = parseInt(clean.substring(2, 4), 16) / 255;
+            const b = parseInt(clean.substring(4, 6), 16) / 255;
+            return 0.2126 * r + 0.7152 * g + 0.0722 * b;
+        }
+
+        function checkColorContrast() {
+            const fgLum = hexToLuminance(state.fgColor);
+            const bgLum = hexToLuminance(state.bgColor);
+            const warnEl = document.getElementById('contrast-warning');
+            // QR scanners require dark foreground on light background with sufficient difference
+            if (fgLum >= bgLum - 0.22) {
+                warnEl.classList.remove('hidden');
+            } else {
+                warnEl.classList.add('hidden');
+            }
+        }
 
         // --- STATUS LINE UPDATER ---
         function updateStatusLine(statusType, message) {
@@ -695,26 +760,25 @@
             text.textContent = message;
 
             if (statusType === 'success') {
-                bar.className = 'neo-border rounded-2xl p-3.5 bg-vibe-lime text-slate-900 font-extrabold text-sm flex items-center justify-center gap-2.5 transition-all';
-                icon.className = 'ph-fill ph-check-circle text-xl text-slate-900';
-                hintText.textContent = 'Mở camera điện thoại quét thử ngay!';
+                bar.className = 'neo-border rounded-2xl p-3.5 bg-vibe-lime text-slate-900 font-extrabold text-xs sm:text-sm flex items-center justify-center gap-2.5 transition-all';
+                icon.className = 'ph-fill ph-check-circle text-xl text-slate-900 shrink-0';
+                hintText.textContent = 'Chuẩn UTF-8 • Mở camera điện thoại hoặc Zalo quét thử ngay!';
             } else if (statusType === 'error') {
-                bar.className = 'neo-border rounded-2xl p-3.5 bg-rose-100 text-rose-800 font-extrabold text-sm flex items-center justify-center gap-2.5 transition-all';
-                icon.className = 'ph-fill ph-x-circle text-xl text-vibe-pink';
-                hintText.textContent = 'Tạo không thành công, vui lòng kiểm tra lại!';
+                bar.className = 'neo-border rounded-2xl p-3.5 bg-rose-100 text-rose-800 font-extrabold text-xs sm:text-sm flex items-center justify-center gap-2.5 transition-all';
+                icon.className = 'ph-fill ph-x-circle text-xl text-vibe-pink shrink-0';
+                hintText.textContent = 'Chưa đủ thông tin để tạo QR, vui lòng kiểm tra lại!';
             } else {
-                bar.className = 'neo-border rounded-2xl p-3.5 bg-slate-100 text-slate-700 font-bold text-sm flex items-center justify-center gap-2.5 transition-all';
-                icon.className = 'ph-fill ph-info text-xl text-slate-600';
-                hintText.textContent = 'Nhấn "Bắt đầu tạo" để cập nhật mã QR...';
+                bar.className = 'neo-border rounded-2xl p-3.5 bg-amber-100 text-slate-900 font-bold text-xs sm:text-sm flex items-center justify-center gap-2.5 transition-all';
+                icon.className = 'ph-fill ph-sparkle text-xl text-vibe-purple shrink-0';
+                hintText.textContent = 'Nhấn "Bắt đầu tạo mã QR" hoặc gõ trực tiếp để cập nhật!';
             }
         }
 
-        // --- TAB SWITCHING ---
+        // --- TAB SWITCHING (4 TABS: URL, TEXT, WIFI, VCARD) ---
         function switchTab(tabName) {
             state.activeTab = tabName;
 
-            // Update tab button styles
-            const tabs = ['url', 'wifi', 'vcard'];
+            const tabs = ['url', 'text', 'wifi', 'vcard'];
             tabs.forEach(t => {
                 const btn = document.getElementById(`tab-${t}`);
                 const form = document.getElementById(`form-${t}`);
@@ -729,26 +793,48 @@
                 }
             });
 
-            // Update Badge
             const badgeMap = {
-                'url': 'LINK / TEXT',
+                'url': 'ĐƯỜNG DẪN (LINK)',
+                'text': 'VĂN BẢN (CHỮ UTF-8)',
                 'wifi': 'WI-FI TỰ ĐỘNG',
                 'vcard': 'DANH THIẾP (VCARD)'
             };
             document.getElementById('qr-type-badge').textContent = badgeMap[tabName];
 
-            updateStatusLine('pending', 'Trạng thái: Đã đổi loại nội dung (Nhấn "Bắt đầu tạo" để tạo QR)');
+            // Auto-render if content exists in the newly selected tab
+            const check = validateAndBuildPayload();
+            if (check.ok) {
+                renderQRCodeWithPayload(check.payload);
+                state.isGenerated = true;
+                document.getElementById('qr-empty-placeholder').classList.add('hidden');
+                document.getElementById('qr-canvas').classList.remove('hidden');
+                updateStatusLine('success', `Đang hiển thị mã QR cho mục ${badgeMap[tabName]} ✨`);
+            } else {
+                updateStatusLine('pending', `Mời bạn nhập thông tin cho mục ${badgeMap[tabName]} rồi nhấn "Bắt đầu tạo"`);
+            }
         }
 
         // --- VALIDATE & BUILD PAYLOAD ---
         function validateAndBuildPayload() {
             if (state.activeTab === 'url') {
-                const val = document.getElementById('input-url').value.trim();
+                let val = document.getElementById('input-url').value.trim();
                 if (!val) {
-                    return { ok: false, error: 'Tạo không thành công: Bạn chưa nhập đường dẫn hoặc văn bản!' };
+                    return { ok: false, error: 'Bạn chưa nhập đường dẫn Website (Link)!' };
+                }
+                const autoHttps = document.getElementById('auto-https').checked;
+                if (autoHttps && !/^[a-zA-Z]+:\/\//.test(val)) {
+                    val = 'https://' + val;
                 }
                 return { ok: true, payload: val };
-            } 
+            }
+
+            if (state.activeTab === 'text') {
+                const val = document.getElementById('input-text').value.trim();
+                if (!val) {
+                    return { ok: false, error: 'Bạn chưa nhập nội dung Văn bản (Chữ)!' };
+                }
+                return { ok: true, payload: val };
+            }
             
             if (state.activeTab === 'wifi') {
                 const ssid = document.getElementById('wifi-ssid').value.trim();
@@ -757,10 +843,9 @@
                 const hidden = document.getElementById('wifi-hidden').checked ? 'true' : 'false';
                 
                 if (!ssid) {
-                    return { ok: false, error: 'Tạo không thành công: Vui lòng nhập Tên mạng Wi-Fi (SSID)!' };
+                    return { ok: false, error: 'Vui lòng nhập Tên mạng Wi-Fi (SSID)!' };
                 }
                 
-                // Escape special characters in Wi-Fi strings
                 const escapeWifi = (str) => str.replace(/([\\;,:])/g, '\\$1');
                 return {
                     ok: true,
@@ -776,16 +861,16 @@
                 const url = document.getElementById('vcard-url').value.trim();
 
                 if (!name && !phone) {
-                    return { ok: false, error: 'Tạo không thành công: Vui lòng nhập Họ tên hoặc Số điện thoại!' };
+                    return { ok: false, error: 'Vui lòng nhập Họ tên hoặc Số điện thoại!' };
                 }
 
                 const vcardLines = [
                     'BEGIN:VCARD',
                     'VERSION:3.0',
-                    `FN:${name || 'Liên hệ mới'}`,
-                    `N:${name || 'Liên hệ mới'};;;`,
+                    `FN;CHARSET=UTF-8:${name || 'Liên hệ mới'}`,
+                    `N;CHARSET=UTF-8:${name || 'Liên hệ mới'};;;`,
                 ];
-                if (org) vcardLines.push(`ORG:${org}`);
+                if (org) vcardLines.push(`ORG;CHARSET=UTF-8:${org}`);
                 if (phone) vcardLines.push(`TEL;TYPE=CELL:${phone}`);
                 if (email) vcardLines.push(`EMAIL:${email}`);
                 if (url) vcardLines.push(`URL:${url}`);
@@ -794,7 +879,7 @@
                 return { ok: true, payload: vcardLines.join('\n') };
             }
 
-            return { ok: false, error: 'Tạo không thành công: Dữ liệu không hợp lệ!' };
+            return { ok: false, error: 'Dữ liệu không hợp lệ!' };
         }
 
         // --- BUTTON HANDLER: BẮT ĐẦU TẠO ---
@@ -805,84 +890,155 @@
                 state.isGenerated = false;
                 document.getElementById('qr-canvas').classList.add('hidden');
                 document.getElementById('qr-empty-placeholder').classList.remove('hidden');
-                updateStatusLine('error', `Trạng thái: ${result.error}`);
-                showToast('Tạo không thành công!', result.error, true);
+                document.getElementById('qr-empty-placeholder').classList.add('flex');
+                updateStatusLine('error', `Lỗi: ${result.error}`);
+                showToast('Chưa nhập nội dung!', result.error, true);
                 return;
             }
 
-            // Render QR onto Canvas
             renderQRCodeWithPayload(result.payload);
             state.isGenerated = true;
 
             document.getElementById('qr-empty-placeholder').classList.add('hidden');
+            document.getElementById('qr-empty-placeholder').classList.remove('flex');
             document.getElementById('qr-canvas').classList.remove('hidden');
 
-            updateStatusLine('success', 'Trạng thái: Tạo mã QR thành công! ✨');
-            showToast('Tạo thành công! 🎉', 'Mã QR của bạn đã sẵn sàng để quét và tải xuống.');
+            updateStatusLine('success', 'Tạo mã QR thành công! Đã tối ưu chuẩn UTF-8 quét 100% nhạy ✨');
+            showToast('Tạo QR thành công! 🎉', 'Mã QR của bạn đã sẵn sàng để quét trên mọi thiết bị.');
         }
 
-        // --- MAIN QR RENDERING WITH CENTER LOGO ---
+        // --- PRECISION UTF-8 MATRIX QR RENDERING & SMART CENTER EXCAVATION ---
         function renderQRCodeWithPayload(payload) {
-            // Configure QRious offscreen engine
-            qrEngine.set({
-                value: payload,
-                size: state.size,
-                level: state.ecLevel,
-                foreground: state.fgColor,
-                background: state.bgColor,
-                padding: Math.round(state.size * 0.05)
-            });
+            try {
+                // Force 'H' (30% recovery) if a center logo is used so scanners never fail
+                const effectiveEC = state.logoImage ? 'H' : state.ecLevel;
 
-            // Sync main visible canvas dimensions
-            canvas.width = state.size;
-            canvas.height = state.size;
+                // TypeNumber 0 = Auto-detect optimal QR version
+                const qr = qrcode(0, effectiveEC);
 
-            // Clear & Draw base QR code
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            ctx.drawImage(offscreenCanvas, 0, 0, state.size, state.size);
+                // If payload is very short (e.g., < 12 bytes) and has a logo, pad with harmless spaces or force version >= 3
+                // Actually qrcode-generator allows setting minimum version if needed:
+                let minVersion = state.logoImage ? 3 : 1;
+                let finalQr = null;
 
-            // Draw Center Logo / Badge if present
-            if (state.logoImage) {
-                const logoBoxSize = Math.round(state.size * state.badgeScale);
+                for (let v = minVersion; v <= 40; v++) {
+                    try {
+                        const candidate = qrcode(v, effectiveEC);
+                        candidate.addData(payload, 'Byte');
+                        candidate.make();
+                        finalQr = candidate;
+                        break;
+                    } catch (err) {
+                        // Payload too big for version v, continue to next version
+                    }
+                }
+
+                // Fallback to auto if loop didn't catch
+                if (!finalQr) {
+                    qr.addData(payload, 'Byte');
+                    qr.make();
+                    finalQr = qr;
+                }
+
+                const moduleCount = finalQr.getModuleCount();
+                const quietZoneModules = 4; // Standard 4-module quiet zone for 100% scanner compatibility
+                const totalModules = moduleCount + quietZoneModules * 2;
+
+                // Sync canvas dimensions
+                canvas.width = state.size;
+                canvas.height = state.size;
+
+                const moduleSize = state.size / totalModules;
+                const offset = quietZoneModules * moduleSize;
+
+                // 1. Fill full background (including quiet zone)
+                ctx.fillStyle = state.bgColor;
+                ctx.fillRect(0, 0, state.size, state.size);
+
+                // 2. Calculate Smart Center Excavation zone if Logo is active
+                // We cap the excavation zone so it never exceeds safe limits of the data matrix
+                const safeScale = Math.min(state.badgeScale, 0.22);
+                const logoBoxSize = Math.round(state.size * safeScale);
+                const pad = Math.max(5, Math.round(moduleSize * 0.85));
+                const clearRadius = (logoBoxSize / 2) + pad;
                 const cx = state.size / 2;
                 const cy = state.size / 2;
-                const x = cx - logoBoxSize / 2;
-                const y = cy - logoBoxSize / 2;
-                const pad = Math.max(5, Math.round(state.size * 0.015));
 
-                ctx.save();
+                // Helper to check if a module's center falls inside the logo clearing zone
+                function isModuleUnderLogo(r, c) {
+                    if (!state.logoImage) return false;
+                    // Never excavate the 3 corner finder patterns (top-left, top-right, bottom-left 8x8 zones)
+                    if ((r < 8 && c < 8) || (r < 8 && c >= moduleCount - 8) || (r >= moduleCount - 8 && c < 8)) {
+                        return false;
+                    }
+                    const mx = offset + (c + 0.5) * moduleSize;
+                    const my = offset + (r + 0.5) * moduleSize;
+                    const dx = Math.abs(mx - cx);
+                    const dy = Math.abs(my - cy);
 
-                // 1. Draw outer protective plate + border according to selected shape
-                ctx.fillStyle = state.badgeBgColor;
-                ctx.lineWidth = Math.max(2.5, Math.round(state.size * 0.009));
-                ctx.strokeStyle = state.fgColor;
+                    if (state.badgeShape === 'circle') {
+                        return (dx * dx + dy * dy) <= (clearRadius * clearRadius);
+                    } else if (state.badgeShape === 'diamond') {
+                        return (dx + dy) <= (clearRadius * 1.15);
+                    } else {
+                        return dx <= clearRadius && dy <= clearRadius;
+                    }
+                }
 
-                drawBadgeShapePath(ctx, cx, cy, logoBoxSize + pad * 2, state.badgeShape);
-                ctx.fill();
-                ctx.stroke();
+                // 3. Draw crisp QR modules
+                ctx.fillStyle = state.fgColor;
+                for (let r = 0; r < moduleCount; r++) {
+                    for (let c = 0; c < moduleCount; c++) {
+                        if (finalQr.isDark(r, c) && !isModuleUnderLogo(r, c)) {
+                            const x = Math.floor(offset + c * moduleSize);
+                            const y = Math.floor(offset + r * moduleSize);
+                            const w = Math.ceil((offset + (c + 1) * moduleSize) - x);
+                            const h = Math.ceil((offset + (r + 1) * moduleSize) - y);
+                            ctx.fillRect(x, y, w, h);
+                        }
+                    }
+                }
 
-                // 2. Clip inner area for the graphic/image
-                drawBadgeShapePath(ctx, cx, cy, logoBoxSize, state.badgeShape);
-                ctx.clip();
+                // 4. Draw Center Logo / Badge cleanly inside excavated zone
+                if (state.logoImage) {
+                    const x = cx - logoBoxSize / 2;
+                    const y = cy - logoBoxSize / 2;
+                    const borderPad = Math.max(4, Math.round(state.size * 0.012));
 
-                // Fill badge background inside clip too
-                ctx.fillStyle = state.badgeBgColor;
-                ctx.fillRect(x, y, logoBoxSize, logoBoxSize);
+                    ctx.save();
 
-                // 3. Draw the image inside clipped area
-                ctx.drawImage(state.logoImage, x, y, logoBoxSize, logoBoxSize);
-                ctx.restore();
+                    // Outer badge plate + crisp border
+                    ctx.fillStyle = state.badgeBgColor;
+                    ctx.lineWidth = Math.max(2.5, Math.round(state.size * 0.007));
+                    ctx.strokeStyle = state.fgColor;
+
+                    drawBadgeShapePath(ctx, cx, cy, logoBoxSize + borderPad * 2, state.badgeShape);
+                    ctx.fill();
+                    ctx.stroke();
+
+                    // Inner clipped graphic
+                    drawBadgeShapePath(ctx, cx, cy, logoBoxSize, state.badgeShape);
+                    ctx.clip();
+
+                    ctx.fillStyle = state.badgeBgColor;
+                    ctx.fillRect(x, y, logoBoxSize, logoBoxSize);
+
+                    ctx.drawImage(state.logoImage, x, y, logoBoxSize, logoBoxSize);
+                    ctx.restore();
+                }
+
+                // Update footer summaries
+                document.getElementById('summary-dimensions').textContent = `Kích thước: ${state.size}x${state.size}px`;
+                const ecMap = {
+                    'L': 'Mức L (7%)',
+                    'M': 'Mức M (15%)',
+                    'Q': 'Mức Q (25%)',
+                    'H': 'Mức H (30%)'
+                };
+                document.getElementById('summary-ec').textContent = `Chống lỗi: ${ecMap[effectiveEC]}`;
+            } catch (e) {
+                showToast('Nội dung quá dài!', 'Vui lòng rút gọn bớt văn bản để mã QR dễ quét hơn.', true);
             }
-
-            // Update footer summaries
-            document.getElementById('summary-dimensions').textContent = `Kích thước: ${state.size}x${state.size}px`;
-            const ecMap = {
-                'L': 'Mức L (7%)',
-                'M': 'Mức M (15%)',
-                'Q': 'Mức Q (25%)',
-                'H': 'Mức H (30%)'
-            };
-            document.getElementById('summary-ec').textContent = `Chống lỗi: ${ecMap[state.ecLevel]}`;
         }
 
         // Helper for drawing badge shapes (rounded, circle, diamond)
@@ -900,13 +1056,11 @@
                 context.lineTo(cx - half * 1.08, cy);
                 context.closePath();
             } else {
-                // Default: 'rounded'
                 const radius = Math.round(size * 0.24);
                 drawRoundedRect(context, cx - half, cy - half, size, size, radius);
             }
         }
 
-        // Helper for drawing rounded rectangles on Canvas
         function drawRoundedRect(context, x, y, width, height, radius) {
             context.beginPath();
             context.moveTo(x + radius, y);
@@ -922,11 +1076,23 @@
         }
 
         // --- QUICK ACTIONS & CUSTOMIZATION HANDLERS ---
-        function setQuickUrl(text) {
+        function setQuickUrl(urlStr) {
             const input = document.getElementById('input-url');
-            input.value = text;
-            updateStatusLine('pending', 'Trạng thái: Đã chọn mẫu (Nhấn "Bắt đầu tạo" để tạo QR)');
-            showToast('Đã điền mẫu!', 'Nhấn nút "Bắt đầu tạo" để xuất mã QR nhé.');
+            input.value = urlStr;
+            refreshPreviewIfGenerated('Đã điền mẫu Đường dẫn (Link)');
+            showToast('Đã chọn mẫu Link!', 'Mã QR đã được cập nhật ngay.');
+        }
+
+        function setQuickText(textStr) {
+            const input = document.getElementById('input-text');
+            input.value = textStr;
+            updateCharCounter();
+            handleGenerateQR();
+        }
+
+        function updateCharCounter() {
+            const val = document.getElementById('input-text').value;
+            document.getElementById('text-char-count').textContent = `${val.length} ký tự`;
         }
 
         function applyColorPreset(fg, bg) {
@@ -936,7 +1102,8 @@
             document.getElementById('qr-bg-color').value = bg;
             document.getElementById('fg-hex-label').textContent = fg;
             document.getElementById('bg-hex-label').textContent = bg;
-            updateStatusLine('pending', 'Trạng thái: Đã đổi màu (Nhấn "Bắt đầu tạo" để áp dụng)');
+            checkColorContrast();
+            refreshPreviewIfGenerated('Đã áp dụng bảng màu Vibe');
         }
 
         function setErrorCorrection(level) {
@@ -950,7 +1117,7 @@
                     btn.classList.add('bg-white');
                 }
             });
-            updateStatusLine('pending', 'Trạng thái: Đã đổi mức chống lỗi (Nhấn "Bắt đầu tạo" để áp dụng)');
+            refreshPreviewIfGenerated(`Đã đổi mức chống lỗi sang ${level}`);
         }
 
         // --- LOGO SUB-TABS & STICKER CATEGORIES ---
@@ -960,10 +1127,10 @@
                 const btn = document.getElementById(`logo-tab-${t}`);
                 const panel = document.getElementById(`logo-panel-${t}`);
                 if (t === tab) {
-                    btn.className = 'py-2 px-3 rounded-xl font-bold text-xs sm:text-sm flex items-center justify-center gap-1.5 bg-vibe-yellow neo-border shadow-neo-sm transition';
+                    btn.className = 'py-2.5 px-2 rounded-xl font-bold text-xs sm:text-sm flex flex-col sm:flex-row items-center justify-center gap-1 bg-vibe-yellow neo-border shadow-neo-sm transition text-center leading-tight';
                     panel.classList.remove('hidden');
                 } else {
-                    btn.className = 'py-2 px-3 rounded-xl font-bold text-xs sm:text-sm flex items-center justify-center gap-1.5 bg-transparent hover:bg-white/60 transition';
+                    btn.className = 'py-2.5 px-2 rounded-xl font-bold text-xs sm:text-sm flex flex-col sm:flex-row items-center justify-center gap-1 bg-transparent hover:bg-white/60 transition text-center leading-tight';
                     panel.classList.add('hidden');
                 }
             });
@@ -992,17 +1159,17 @@
             }
         }
 
-        // Helper to refresh live preview if QR was already generated
         function refreshPreviewIfGenerated(statusMsg) {
-            if (state.isGenerated) {
-                const res = validateAndBuildPayload();
-                if (res.ok) {
-                    renderQRCodeWithPayload(res.payload);
-                    updateStatusLine('success', `${statusMsg} (Đã cập nhật trực tiếp lên QR ✨)`);
-                    return;
-                }
+            const res = validateAndBuildPayload();
+            if (res.ok) {
+                renderQRCodeWithPayload(res.payload);
+                state.isGenerated = true;
+                document.getElementById('qr-empty-placeholder').classList.add('hidden');
+                document.getElementById('qr-canvas').classList.remove('hidden');
+                updateStatusLine('success', `${statusMsg} (Đã tự động cập nhật lên QR ✨)`);
+                return;
             }
-            updateStatusLine('pending', `Trạng thái: ${statusMsg} (Nhấn "Bắt đầu tạo" để áp dụng)`);
+            updateStatusLine('pending', `${statusMsg} (Hãy nhập nội dung và nhấn "Bắt đầu tạo")`);
         }
 
         // --- LOGO HANDLING (UPLOAD, EMOJI, VECTOR ICON, CUSTOM TEXT BADGE) ---
@@ -1016,9 +1183,10 @@
                 img.onload = function() {
                     state.logoImage = img;
                     state.logoSource = { type: 'upload', value: event.target.result };
+                    setErrorCorrection('H');
                     document.getElementById('remove-logo-btn').classList.remove('hidden');
                     refreshPreviewIfGenerated('Đã tải ảnh Logo lên');
-                    showToast('Đã tải Logo!', 'Ảnh của bạn đã sẵn sàng ở tâm mã QR.');
+                    showToast('Đã tải Logo!', 'Tự động bật chống lỗi mức H để quét siêu nhạy.');
                 };
                 img.src = event.target.result;
             };
@@ -1027,19 +1195,21 @@
 
         function setEmojiLogo(emoji) {
             state.logoSource = { type: 'emoji', value: emoji };
+            setErrorCorrection('H');
             buildCanvasLogoFromSource(() => {
                 document.getElementById('remove-logo-btn').classList.remove('hidden');
-                refreshPreviewIfGenerated(`Đã chọn Sticker ${emoji}`);
-                showToast('Đã gắn Sticker!', `Sticker ${emoji} đã được chọn làm tâm QR.`);
+                refreshPreviewIfGenerated(`Đã gắn Sticker ${emoji}`);
+                showToast('Đã gắn Sticker!', `Sticker ${emoji} đã được đặt vào giữa mã QR.`);
             });
         }
 
         function setVectorIconLogo(iconKey) {
             if (!VECTOR_ICONS[iconKey]) return;
             state.logoSource = { type: 'svg', value: iconKey };
+            setErrorCorrection('H');
             buildCanvasLogoFromSource(() => {
                 document.getElementById('remove-logo-btn').classList.remove('hidden');
-                refreshPreviewIfGenerated(`Đã chọn Icon ${iconKey.toUpperCase()}`);
+                refreshPreviewIfGenerated(`Đã gắn Icon ${iconKey.toUpperCase()}`);
                 showToast('Đã gắn Icon Vector!', 'Icon sắc nét đã được đặt vào giữa mã QR.');
             });
         }
@@ -1047,14 +1217,15 @@
         function applyCustomTextOrEmoji() {
             const raw = document.getElementById('custom-badge-input').value.trim();
             if (!raw) {
-                showToast('Chưa nhập nội dung!', 'Hãy gõ Emoji hoặc 1-4 chữ cái vào ô trống nhé.', true);
+                showToast('Chưa nhập chữ!', 'Hãy gõ Emoji hoặc 1-4 chữ cái vào ô trống nhé.', true);
                 return;
             }
             state.logoSource = { type: 'text', value: raw };
+            setErrorCorrection('H');
             buildCanvasLogoFromSource(() => {
                 document.getElementById('remove-logo-btn').classList.remove('hidden');
                 refreshPreviewIfGenerated(`Đã tạo huy hiệu "${raw}"`);
-                showToast('Đã chèn huy hiệu!', `Nội dung "${raw}" đã được gắn vào giữa QR.`);
+                showToast('Đã chèn huy hiệu!', `Chữ "${raw}" đã được gắn an toàn vào giữa QR.`);
             });
         }
 
@@ -1063,7 +1234,6 @@
             applyCustomTextOrEmoji();
         }
 
-        // Regenerate the offscreen logo image when badge colors or source change
         function buildCanvasLogoFromSource(callback) {
             if (!state.logoSource) return;
 
@@ -1077,7 +1247,6 @@
                 tCtx.fillStyle = state.badgeBgColor;
                 tCtx.fillRect(0, 0, 200, 200);
 
-                // Dynamic font size based on length
                 const charLen = Array.from(textVal).length;
                 let fontSize = 115;
                 if (charLen === 2) fontSize = 86;
@@ -1132,43 +1301,45 @@
             document.getElementById('custom-badge-input').value = '';
             document.getElementById('remove-logo-btn').classList.add('hidden');
             refreshPreviewIfGenerated('Đã gỡ Logo/Icon');
-            showToast('Đã xóa Logo/Icon', 'Mã QR đã trở về trạng thái không có tâm.');
+            showToast('Đã xóa Logo/Icon', 'Mã QR đã trở về trạng thái tiêu chuẩn.');
         }
 
         // --- EXPORT: DOWNLOAD & COPY ---
         function downloadQR() {
-            if (!state.isGenerated) {
-                updateStatusLine('error', 'Trạng thái: Chưa có mã QR để tải! Hãy nhấn "Bắt đầu tạo" trước.');
-                showToast('Chưa tạo mã QR!', 'Bạn cần nhấn nút "Bắt đầu tạo" trước khi tải xuống.', true);
+            const check = validateAndBuildPayload();
+            if (!check.ok) {
+                showToast('Chưa có nội dung!', check.error, true);
                 return;
             }
+            renderQRCodeWithPayload(check.payload);
             try {
                 const dataUrl = canvas.toDataURL('image/png');
                 const link = document.createElement('a');
-                link.download = `qr-vibe-${Date.now()}.png`;
+                link.download = `qr-vibe-${state.activeTab}-${Date.now()}.png`;
                 link.href = dataUrl;
                 document.body.appendChild(link);
                 link.click();
                 document.body.removeChild(link);
-                showToast('Tải xuống thành công! 🎉', 'Ảnh PNG chất lượng cao đã được lưu về máy.');
+                showToast('Tải xuống thành công! 🎉', 'Ảnh PNG sắc nét đã được lưu về máy của bạn.');
             } catch (err) {
                 showToast('Ối có lỗi!', 'Không thể tải ảnh xuống lúc này.', true);
             }
         }
 
         async function copyQRToClipboard() {
-            if (!state.isGenerated) {
-                updateStatusLine('error', 'Trạng thái: Chưa có mã QR để sao chép! Hãy nhấn "Bắt đầu tạo" trước.');
-                showToast('Chưa tạo mã QR!', 'Bạn cần nhấn nút "Bắt đầu tạo" trước khi sao chép.', true);
+            const check = validateAndBuildPayload();
+            if (!check.ok) {
+                showToast('Chưa có nội dung!', check.error, true);
                 return;
             }
+            renderQRCodeWithPayload(check.payload);
             try {
                 canvas.toBlob(async function(blob) {
                     if (navigator.clipboard && window.ClipboardItem) {
                         try {
                             const item = new ClipboardItem({ 'image/png': blob });
                             await navigator.clipboard.write([item]);
-                            showToast('Đã sao chép ảnh QR! 📋', 'Nhấn Ctrl+V (hoặc Dán) vào khung chat để gửi ngay.');
+                            showToast('Đã sao chép ảnh QR! 📋', 'Bạn có thể dán (Paste) trực tiếp vào Zalo, Messenger.');
                             return;
                         } catch (clipboardErr) {
                             copyPayloadTextFallback();
@@ -1190,12 +1361,14 @@
             tempInput.select();
             document.execCommand('copy');
             document.body.removeChild(tempInput);
-            showToast('Đã sao chép nội dung QR!', 'Trình duyệt hạn chế copy ảnh trực tiếp nên mình đã copy nội dung văn bản cho bạn.');
+            showToast('Đã sao chép nội dung QR!', 'Đã lưu văn bản vào bộ nhớ tạm của thiết bị.');
         }
 
         // --- RESET ALL ---
         function resetAll() {
-            document.getElementById('input-url').value = '';
+            document.getElementById('input-url').value = 'https://google.com';
+            document.getElementById('input-text').value = '';
+            updateCharCounter();
             document.getElementById('wifi-ssid').value = '';
             document.getElementById('wifi-pass').value = '';
             document.getElementById('vcard-name').value = '';
@@ -1204,19 +1377,17 @@
             document.getElementById('vcard-org').value = '';
             document.getElementById('vcard-url').value = '';
             
-            state.size = 400;
-            state.isGenerated = false;
-            document.getElementById('qr-size').value = 400;
-            document.getElementById('size-value-label').textContent = '400 x 400 px';
-            
-            document.getElementById('qr-canvas').classList.add('hidden');
-            document.getElementById('qr-empty-placeholder').classList.remove('hidden');
+            state.size = 500;
+            state.badgeScale = 0.18;
+            document.getElementById('qr-size').value = 500;
+            document.getElementById('size-value-label').textContent = '500 x 500 px';
+            document.getElementById('badge-scale-slider').value = 18;
+            document.getElementById('badge-scale-label').textContent = '18%';
 
             removeLogo();
             setErrorCorrection('H');
             applyColorPreset('#0F172A', '#FFFFFF');
             switchTab('url');
-            updateStatusLine('pending', 'Trạng thái: Đã làm mới (Hãy nhập thông tin và nhấn "Bắt đầu tạo")');
             showToast('Đã làm mới!', 'Tất cả cài đặt đã quay về mặc định.');
         }
 
@@ -1236,29 +1407,48 @@
                 iconBox.innerHTML = '<i class="ph-bold ph-check"></i>';
             }
 
-            container.classList.remove('translate-y-24', 'opacity-0');
+            container.classList.remove('translate-y-28', 'opacity-0');
             clearTimeout(toastTimeout);
             toastTimeout = setTimeout(() => {
-                container.classList.add('translate-y-24', 'opacity-0');
+                container.classList.add('translate-y-28', 'opacity-0');
             }, 3200);
         }
 
-        // --- EVENT LISTENERS FOR UI CONTROLS (NO AUTO-GENERATE) ---
+        // --- EVENT LISTENERS FOR LIVE EXPERIENCE ---
         function attachControlListeners() {
-            // Color pickers only update labels & state, waiting for "Bắt đầu tạo"
+            // Live update when typing in inputs
+            ['input-url', 'wifi-ssid', 'wifi-pass', 'wifi-type', 'wifi-hidden', 'vcard-name', 'vcard-phone', 'vcard-email', 'vcard-org', 'vcard-url'].forEach(id => {
+                const el = document.getElementById(id);
+                if (el) {
+                    el.addEventListener('input', () => refreshPreviewIfGenerated('Đang cập nhật trực tiếp'));
+                }
+            });
+
+            document.getElementById('auto-https').addEventListener('change', () => {
+                refreshPreviewIfGenerated('Đã cập nhật định dạng https://');
+            });
+
+            document.getElementById('input-text').addEventListener('input', () => {
+                updateCharCounter();
+                refreshPreviewIfGenerated('Đang mã hóa văn bản chuẩn UTF-8');
+            });
+
+            // Color pickers
             document.getElementById('qr-fg-color').addEventListener('input', (e) => {
                 state.fgColor = e.target.value;
                 document.getElementById('fg-hex-label').textContent = e.target.value;
-                updateStatusLine('pending', 'Trạng thái: Đã đổi màu chấm (Nhấn "Bắt đầu tạo" để áp dụng)');
+                checkColorContrast();
+                refreshPreviewIfGenerated('Đã đổi màu chấm QR');
             });
 
             document.getElementById('qr-bg-color').addEventListener('input', (e) => {
                 state.bgColor = e.target.value;
                 document.getElementById('bg-hex-label').textContent = e.target.value;
-                updateStatusLine('pending', 'Trạng thái: Đã đổi màu nền (Nhấn "Bắt đầu tạo" để áp dụng)');
+                checkColorContrast();
+                refreshPreviewIfGenerated('Đã đổi màu nền QR');
             });
 
-            // Size Slider only updates label & state
+            // Size Slider
             document.getElementById('qr-size').addEventListener('input', (e) => {
                 state.size = parseInt(e.target.value, 10);
                 document.getElementById('size-value-label').textContent = `${state.size} x ${state.size} px`;
@@ -1287,13 +1477,14 @@
                 const pct = parseInt(e.target.value, 10);
                 state.badgeScale = pct / 100;
                 document.getElementById('badge-scale-label').textContent = `${pct}%`;
-                refreshPreviewIfGenerated(`Đã chỉnh cỡ Logo (${pct}%)`);
+                refreshPreviewIfGenerated(`Đã chỉnh cỡ Logo an toàn (${pct}%)`);
             });
         }
 
         // Initialize on load
         window.addEventListener('DOMContentLoaded', () => {
             attachControlListeners();
+            handleGenerateQR();
         });
     </script>
 </body>
