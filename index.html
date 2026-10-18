@@ -1,0 +1,1300 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR VIBE ✨ - Tạo Mã QR Cực Cháy</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Plus Jakarta Sans & Space Grotesk -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <!-- QRious Library for reliable Canvas QR Generation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        display: ['"Space Grotesk"', 'sans-serif'],
+                    },
+                    colors: {
+                        vibe: {
+                            pink: '#FF3366',
+                            purple: '#7C3AED',
+                            yellow: '#FDE047',
+                            lime: '#A3E635',
+                            cyan: '#22D3EE',
+                            dark: '#0F172A'
+                        }
+                    },
+                    boxShadow: {
+                        'neo': '5px 5px 0px 0px #0F172A',
+                        'neo-sm': '3px 3px 0px 0px #0F172A',
+                        'neo-lg': '8px 8px 0px 0px #0F172A',
+                        'neo-hover': '2px 2px 0px 0px #0F172A',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom Aesthetics & Scrollbar */
+        body {
+            background-color: #FFFBEB;
+            background-image: 
+                radial-gradient(#7C3AED 0.75px, transparent 0.75px), 
+                radial-gradient(#FF3366 0.75px, #FFFBEB 0.75px);
+            background-size: 30px 30px;
+            background-position: 0 0, 15px 15px;
+        }
+        
+        .neo-border {
+            border: 3px solid #0F172A;
+        }
+        
+        .neo-btn {
+            border: 3px solid #0F172A;
+            box-shadow: 4px 4px 0px 0px #0F172A;
+            transition: all 0.15s ease-in-out;
+        }
+        
+        .neo-btn:hover {
+            transform: translate(2px, 2px);
+            box-shadow: 2px 2px 0px 0px #0F172A;
+        }
+        
+        .neo-btn:active {
+            transform: translate(4px, 4px);
+            box-shadow: 0px 0px 0px 0px #0F172A;
+        }
+
+        .neo-input {
+            border: 2.5px solid #0F172A;
+            box-shadow: 3px 3px 0px 0px #0F172A;
+            transition: all 0.2s ease;
+        }
+
+        .neo-input:focus {
+            outline: none;
+            box-shadow: 5px 5px 0px 0px #7C3AED;
+            border-color: #7C3AED;
+        }
+
+        /* Custom Range Slider */
+        input[type=range] {
+            -webkit-appearance: none;
+            background: transparent;
+        }
+        input[type=range]::-webkit-slider-runnable-track {
+            width: 100%;
+            height: 12px;
+            cursor: pointer;
+            background: #E2E8F0;
+            border-radius: 999px;
+            border: 2px solid #0F172A;
+        }
+        input[type=range]::-webkit-slider-thumb {
+            border: 2.5px solid #0F172A;
+            height: 24px;
+            width: 24px;
+            border-radius: 50%;
+            background: #A3E635;
+            cursor: pointer;
+            -webkit-appearance: none;
+            margin-top: -8px;
+            box-shadow: 2px 2px 0px #0F172A;
+        }
+
+        /* Color Input Styling */
+        input[type="color"] {
+            -webkit-appearance: none;
+            border: none;
+            padding: 0;
+        }
+        input[type="color"]::-webkit-color-swatch-wrapper {
+            padding: 0;
+        }
+        input[type="color"]::-webkit-color-swatch {
+            border: none;
+            border-radius: 8px;
+        }
+
+        /* Floating Animation */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-6px) rotate(1deg); }
+        }
+        .animate-float {
+            animation: float 4s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body class="min-h-screen text-slate-900 pb-16 selection:bg-vibe-pink selection:text-white">
+
+    <!-- Top Marquee / Banner -->
+    <div class="bg-slate-900 text-vibe-lime font-display text-sm py-2 px-4 border-b-4 border-slate-900 overflow-hidden whitespace-nowrap flex items-center justify-center gap-4">
+        <span class="inline-flex items-center gap-1 font-bold"><i class="ph-fill ph-sparkle text-vibe-pink"></i> TẠO MÃ QR CHUẨN GU GEN Z</span>
+        <span>•</span>
+        <span class="hidden sm:inline-flex items-center gap-1">MIỄN PHÍ 100% <i class="ph-fill ph-fire text-vibe-yellow"></i></span>
+        <span class="hidden sm:inline">•</span>
+        <span class="inline-flex items-center gap-1">KHÔNG QUẢNG CÁO <i class="ph-fill ph-shooting-star text-vibe-cyan"></i></span>
+    </div>
+
+    <!-- Header Section -->
+    <header class="max-w-6xl mx-auto pt-8 pb-6 px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div class="flex items-center gap-3">
+            <div class="w-12 h-12 rounded-2xl bg-vibe-pink neo-border shadow-neo-sm flex items-center justify-center text-white text-2xl font-bold rotate-[-6deg]">
+                <i class="ph-bold ph-qr-code"></i>
+            </div>
+            <div>
+                <h1 class="font-display text-3xl sm:text-4xl font-extrabold tracking-tight flex items-center gap-2">
+                    QR VIBE 
+                    <span class="text-xs font-sans font-extrabold bg-vibe-yellow px-2.5 py-1 rounded-full neo-border shadow-neo-sm uppercase tracking-wider rotate-3">PRO MAX</span>
+                </h1>
+                <p class="text-sm text-slate-600 font-semibold">Biến mọi thứ thành mã QR cực nghệ chỉ trong 3 giây ⚡</p>
+            </div>
+        </div>
+
+        <button onclick="resetAll()" class="neo-btn bg-white px-4 py-2 rounded-xl font-bold text-sm flex items-center gap-2 hover:bg-slate-100">
+            <i class="ph-bold ph-arrows-counter-clockwise text-lg text-vibe-purple"></i>
+            Làm mới từ đầu
+        </button>
+    </header>
+
+    <!-- Main Content Grid -->
+    <main class="max-w-6xl mx-auto px-4 sm:px-6 grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        
+        <!-- LEFT COLUMN: Controls & Customization (7 cols) -->
+        <div class="lg:col-span-7 space-y-6">
+            
+            <!-- 1. Select QR Type (Tabs) -->
+            <div class="bg-white rounded-3xl p-5 sm:p-6 neo-border shadow-neo">
+                <div class="flex items-center gap-2 mb-4">
+                    <span class="w-7 h-7 rounded-lg bg-vibe-cyan neo-border flex items-center justify-center font-display font-bold text-sm">1</span>
+                    <h2 class="font-display text-xl font-bold">Chọn nội dung muốn tạo</h2>
+                </div>
+
+                <div class="grid grid-cols-3 gap-3 sm:gap-4" id="tab-buttons">
+                    <button onclick="switchTab('url')" id="tab-url" class="neo-btn bg-vibe-yellow py-3 px-3 rounded-2xl font-bold text-sm sm:text-base flex flex-col sm:flex-row items-center justify-center gap-2">
+                        <i class="ph-bold ph-link text-xl"></i>
+                        <span>Link / Chữ</span>
+                    </button>
+                    <button onclick="switchTab('wifi')" id="tab-wifi" class="neo-btn bg-white py-3 px-3 rounded-2xl font-bold text-sm sm:text-base flex flex-col sm:flex-row items-center justify-center gap-2 hover:bg-slate-50">
+                        <i class="ph-bold ph-wifi-high text-xl"></i>
+                        <span>Wi-Fi</span>
+                    </button>
+                    <button onclick="switchTab('vcard')" id="tab-vcard" class="neo-btn bg-white py-3 px-3 rounded-2xl font-bold text-sm sm:text-base flex flex-col sm:flex-row items-center justify-center gap-2 hover:bg-slate-50">
+                        <i class="ph-bold ph-identification-card text-xl"></i>
+                        <span>Danh Thiếp</span>
+                    </button>
+                </div>
+
+                <!-- Tab Forms Container -->
+                <div class="mt-6 pt-6 border-t-2 border-dashed border-slate-300">
+                    
+                    <!-- TAB 1: URL / TEXT -->
+                    <div id="form-url" class="space-y-4">
+                        <div>
+                            <label class="block font-bold text-sm mb-2 flex items-center justify-between">
+                                <span>Nhập đường dẫn (URL) hoặc văn bản bất kỳ: *</span>
+                                <span class="text-xs font-semibold text-vibe-pink bg-rose-100 px-2 py-0.5 rounded-md border border-rose-300">Nhấn "Bắt đầu tạo" để xuất QR</span>
+                            </label>
+                            <textarea id="input-url" rows="3" placeholder="https://tiktok.com/@username hoặc lời nhắn tỏ tình..." class="w-full rounded-2xl p-3.5 neo-input font-medium text-slate-800 placeholder:text-slate-400 resize-none">https://google.com</textarea>
+                        </div>
+                        <!-- Quick Presets -->
+                        <div class="flex flex-wrap items-center gap-2 pt-1">
+                            <span class="text-xs font-bold text-slate-500">Mẫu nhanh:</span>
+                            <button onclick="setQuickUrl('https://facebook.com/')" class="text-xs font-bold bg-blue-100 text-blue-800 px-2.5 py-1 rounded-lg border border-blue-300 hover:bg-blue-200 transition">Facebook</button>
+                            <button onclick="setQuickUrl('https://instagram.com/')" class="text-xs font-bold bg-pink-100 text-pink-800 px-2.5 py-1 rounded-lg border border-pink-300 hover:bg-pink-200 transition">Instagram</button>
+                            <button onclick="setQuickUrl('https://tiktok.com/')" class="text-xs font-bold bg-slate-200 text-slate-800 px-2.5 py-1 rounded-lg border border-slate-400 hover:bg-slate-300 transition">TikTok</button>
+                            <button onclick="setQuickUrl('Chúc cậu một ngày tốt lành nha! ✨💖')" class="text-xs font-bold bg-amber-100 text-amber-800 px-2.5 py-1 rounded-lg border border-amber-300 hover:bg-amber-200 transition">Lời nhắn cute</button>
+                        </div>
+                    </div>
+
+                    <!-- TAB 2: WI-FI -->
+                    <div id="form-wifi" class="space-y-4 hidden">
+                        <div class="bg-cyan-50 border-2 border-slate-900 rounded-2xl p-3 text-xs font-semibold flex items-center gap-2.5 text-slate-700">
+                            <i class="ph-fill ph-info text-xl text-vibe-cyan shrink-0 bg-slate-900 rounded-full p-0.5"></i>
+                            <span>Bạn bè chỉ cần đưa camera vào quét là tự động bắt được Wi-Fi mà không cần hỏi mật khẩu!</span>
+                        </div>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block font-bold text-sm mb-1.5">Tên mạng Wi-Fi (SSID) *</label>
+                                <input type="text" id="wifi-ssid" placeholder="VD: TraSuaFullTopping" class="w-full rounded-xl p-3 neo-input font-medium">
+                            </div>
+                            <div>
+                                <label class="block font-bold text-sm mb-1.5">Mật khẩu Wi-Fi</label>
+                                <div class="relative">
+                                    <input type="text" id="wifi-pass" placeholder="Nhập mật khẩu..." class="w-full rounded-xl p-3 neo-input font-medium pr-10">
+                                    <i class="ph-bold ph-key absolute right-3.5 top-3.5 text-slate-400 text-lg"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 items-center pt-1">
+                            <div>
+                                <label class="block font-bold text-sm mb-1.5">Chuẩn bảo mật</label>
+                                <select id="wifi-type" class="w-full rounded-xl p-3 neo-input font-bold bg-white cursor-pointer">
+                                    <option value="WPA">WPA / WPA2 / WPA3 (Phổ biến nhất)</option>
+                                    <option value="WEP">WEP</option>
+                                    <option value="nopass">Không có mật khẩu</option>
+                                </select>
+                            </div>
+                            <div class="pt-4 sm:pt-6">
+                                <label class="inline-flex items-center gap-3 cursor-pointer select-none">
+                                    <input type="checkbox" id="wifi-hidden" class="w-5 h-5 accent-vibe-pink rounded cursor-pointer border-2 border-slate-900">
+                                    <span class="font-bold text-sm">Mạng Wi-Fi bị ẩn (Hidden)</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- TAB 3: VCARD (CONTACT) -->
+                    <div id="form-vcard" class="space-y-4 hidden">
+                        <div class="bg-lime-100 border-2 border-slate-900 rounded-2xl p-3 text-xs font-semibold flex items-center gap-2.5 text-slate-800">
+                            <i class="ph-fill ph-address-book text-xl text-vibe-lime shrink-0 bg-slate-900 rounded-full p-0.5"></i>
+                            <span>Quét phát lưu ngay số điện thoại, email và trang cá nhân vào danh bạ điện thoại.</span>
+                        </div>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block font-bold text-sm mb-1.5">Họ và Tên *</label>
+                                <input type="text" id="vcard-name" placeholder="VD: Nguyễn Văn Gen Z" class="w-full rounded-xl p-3 neo-input font-medium">
+                            </div>
+                            <div>
+                                <label class="block font-bold text-sm mb-1.5">Số điện thoại *</label>
+                                <input type="tel" id="vcard-phone" placeholder="VD: 0987654321" class="w-full rounded-xl p-3 neo-input font-medium">
+                            </div>
+                            <div>
+                                <label class="block font-bold text-sm mb-1.5">Email</label>
+                                <input type="email" id="vcard-email" placeholder="genz@gmail.com" class="w-full rounded-xl p-3 neo-input font-medium">
+                            </div>
+                            <div>
+                                <label class="block font-bold text-sm mb-1.5">Công ty / Trường học</label>
+                                <input type="text" id="vcard-org" placeholder="VD: Đại học Bách Khoa / Freelancer" class="w-full rounded-xl p-3 neo-input font-medium">
+                            </div>
+                            <div class="sm:col-span-2">
+                                <label class="block font-bold text-sm mb-1.5">Website / Link Bio</label>
+                                <input type="url" id="vcard-url" placeholder="https://beacons.ai/username" class="w-full rounded-xl p-3 neo-input font-medium">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- 2. Customize Design & Colors -->
+            <div class="bg-white rounded-3xl p-5 sm:p-6 neo-border shadow-neo">
+                <div class="flex items-center justify-between mb-5">
+                    <div class="flex items-center gap-2">
+                        <span class="w-7 h-7 rounded-lg bg-vibe-pink text-white neo-border flex items-center justify-center font-display font-bold text-sm">2</span>
+                        <h2 class="font-display text-xl font-bold">Độ chế giao diện & Màu sắc</h2>
+                    </div>
+                    <span class="text-xs font-bold bg-slate-100 px-2.5 py-1 rounded-full border border-slate-300">Tùy chỉnh</span>
+                </div>
+
+                <div class="space-y-6">
+                    <!-- Color Pickers -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div class="p-3.5 rounded-2xl bg-slate-50 neo-border flex items-center justify-between">
+                            <div>
+                                <span class="block font-bold text-sm">Màu chấm QR</span>
+                                <span id="fg-hex-label" class="text-xs font-mono text-slate-500 uppercase">#0F172A</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <input type="color" id="qr-fg-color" value="#0F172A" class="w-11 h-11 rounded-xl cursor-pointer neo-border bg-white p-0.5">
+                            </div>
+                        </div>
+
+                        <div class="p-3.5 rounded-2xl bg-slate-50 neo-border flex items-center justify-between">
+                            <div>
+                                <span class="block font-bold text-sm">Màu nền (Background)</span>
+                                <span id="bg-hex-label" class="text-xs font-mono text-slate-500 uppercase">#FFFFFF</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <input type="color" id="qr-bg-color" value="#FFFFFF" class="w-11 h-11 rounded-xl cursor-pointer neo-border bg-white p-0.5">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Vibe Color Presets -->
+                    <div>
+                        <label class="block font-bold text-xs uppercase tracking-wider text-slate-500 mb-2.5">Bảng màu Vibe có sẵn (Chọn nhanh):</label>
+                        <div class="flex flex-wrap gap-2.5">
+                            <button onclick="applyColorPreset('#0F172A', '#FFFFFF')" class="neo-btn px-3 py-1.5 rounded-xl text-xs font-bold flex items-center gap-2 bg-white">
+                                <span class="w-4 h-4 rounded-full bg-slate-900 border border-slate-400"></span> Kinh điển
+                            </button>
+                            <button onclick="applyColorPreset('#7C3AED', '#F3E8FF')" class="neo-btn px-3 py-1.5 rounded-xl text-xs font-bold flex items-center gap-2 bg-purple-50 text-purple-950">
+                                <span class="w-4 h-4 rounded-full bg-purple-600 border border-slate-900"></span> Tím Mộng Mơ
+                            </button>
+                            <button onclick="applyColorPreset('#BE123C', '#FFE4E6')" class="neo-btn px-3 py-1.5 rounded-xl text-xs font-bold flex items-center gap-2 bg-rose-50 text-rose-950">
+                                <span class="w-4 h-4 rounded-full bg-rose-700 border border-slate-900"></span> Hồng Cháy Phố
+                            </button>
+                            <button onclick="applyColorPreset('#0F172A', '#A3E635')" class="neo-btn px-3 py-1.5 rounded-xl text-xs font-bold flex items-center gap-2 bg-lime-300 text-slate-900">
+                                <span class="w-4 h-4 rounded-full bg-slate-900 border border-white"></span> Xanh Neon
+                            </button>
+                            <button onclick="applyColorPreset('#0369A1', '#E0F2FE')" class="neo-btn px-3 py-1.5 rounded-xl text-xs font-bold flex items-center gap-2 bg-sky-100 text-sky-950">
+                                <span class="w-4 h-4 rounded-full bg-sky-700 border border-slate-900"></span> Ocean Chill
+                            </button>
+                            <button onclick="applyColorPreset('#FDE047', '#0F172A')" class="neo-btn px-3 py-1.5 rounded-xl text-xs font-bold flex items-center gap-2 bg-slate-900 text-yellow-300">
+                                <span class="w-4 h-4 rounded-full bg-yellow-300 border border-slate-900"></span> Cyber Night
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Size & Error Correction -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-2 border-t-2 border-dashed border-slate-200">
+                        <div>
+                            <div class="flex justify-between items-center mb-2">
+                                <label class="font-bold text-sm">Kích thước ảnh xuất:</label>
+                                <span id="size-value-label" class="text-xs font-extrabold bg-vibe-lime px-2 py-0.5 rounded-md neo-border">400 x 400 px</span>
+                            </div>
+                            <input type="range" id="qr-size" min="200" max="800" step="50" value="400" class="w-full">
+                            <div class="flex justify-between text-[11px] font-bold text-slate-400 mt-1">
+                                <span>Nhỏ (200px)</span>
+                                <span>Vừa (500px)</span>
+                                <span>Siêu nét (800px)</span>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block font-bold text-sm mb-2">Độ chống lỗi (Error Correction):</label>
+                            <div class="grid grid-cols-4 gap-2" id="ec-buttons">
+                                <button onclick="setErrorCorrection('L')" data-level="L" class="ec-btn neo-btn py-2 rounded-xl font-bold text-xs bg-white">Thấp (L)</button>
+                                <button onclick="setErrorCorrection('M')" data-level="M" class="ec-btn neo-btn py-2 rounded-xl font-bold text-xs bg-white">Vừa (M)</button>
+                                <button onclick="setErrorCorrection('Q')" data-level="Q" class="ec-btn neo-btn py-2 rounded-xl font-bold text-xs bg-white">Cao (Q)</button>
+                                <button onclick="setErrorCorrection('H')" data-level="H" class="ec-btn neo-btn py-2 rounded-xl font-bold text-xs bg-vibe-yellow">Tối đa (H)</button>
+                            </div>
+                            <p class="text-[11px] font-semibold text-slate-500 mt-1.5">💡 Nên để <b>Tối đa (H)</b> khi chèn Logo ở giữa để dễ quét nhất.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3. Center Logo Upload & Presets -->
+            <div class="bg-white rounded-3xl p-5 sm:p-6 neo-border shadow-neo">
+                <div class="flex items-center justify-between mb-4">
+                    <div class="flex items-center gap-2">
+                        <span class="w-7 h-7 rounded-lg bg-vibe-lime neo-border flex items-center justify-center font-display font-bold text-sm">3</span>
+                        <h2 class="font-display text-xl font-bold">Chèn Logo / Icon / Sticker ở giữa</h2>
+                    </div>
+                    <button id="remove-logo-btn" onclick="removeLogo()" class="hidden text-xs font-bold text-rose-600 bg-rose-100 px-3 py-1.5 rounded-xl neo-border shadow-neo-sm hover:bg-rose-200 transition flex items-center gap-1">
+                        <i class="ph-bold ph-trash"></i> Xóa Logo/Icon
+                    </button>
+                </div>
+
+                <!-- Mode Selector Tabs for Center Graphic -->
+                <div class="grid grid-cols-3 gap-2.5 mb-5 bg-slate-100 p-1.5 rounded-2xl neo-border">
+                    <button onclick="switchLogoTab('icon')" id="logo-tab-icon" class=" py-2 px-3 rounded-xl font-bold text-xs sm:text-sm flex items-center justify-center gap-1.5 bg-vibe-yellow neo-border shadow-neo-sm transition">
+                        <i class="ph-bold ph-smiley-sticker text-base"></i>
+                        <span>Kho Icon & Emoji</span>
+                    </button>
+                    <button onclick="switchLogoTab('custom')" id="logo-tab-custom" class="py-2 px-3 rounded-xl font-bold text-xs sm:text-sm flex items-center justify-center gap-1.5 bg-transparent hover:bg-white/60 transition">
+                        <i class="ph-bold ph-textbox text-base"></i>
+                        <span>Nhập Chữ / Emoji</span>
+                    </button>
+                    <button onclick="switchLogoTab('upload')" id="logo-tab-upload" class="py-2 px-3 rounded-xl font-bold text-xs sm:text-sm flex items-center justify-center gap-1.5 bg-transparent hover:bg-white/60 transition">
+                        <i class="ph-bold ph-upload-simple text-base"></i>
+                        <span>Tải Ảnh Lên</span>
+                    </button>
+                </div>
+
+                <!-- SUB-PANEL 1: KHO ICON & EMOJI TRENDY -->
+                <div id="logo-panel-icon" class="space-y-4">
+                    <!-- Category filter chips -->
+                    <div class="flex items-center justify-between flex-wrap gap-2">
+                        <div class="flex gap-2">
+                            <button onclick="switchStickerCategory('emoji')" id="cat-btn-emoji" class="text-xs font-extrabold px-3 py-1.5 rounded-xl neo-border bg-vibe-pink text-white shadow-neo-sm transition">
+                                🔥 Emoji Gen Z
+                            </button>
+                            <button onclick="switchStickerCategory('svg')" id="cat-btn-svg" class="text-xs font-extrabold px-3 py-1.5 rounded-xl neo-border bg-white text-slate-800 hover:bg-slate-100 transition">
+                                ⚡ Icon Vector Sắc Nét
+                            </button>
+                        </div>
+                        <span class="text-[11px] font-bold text-slate-500">Chạm là gắn ngay!</span>
+                    </div>
+
+                    <!-- Trendy Emoji Grid -->
+                    <div id="sticker-grid-emoji" class="grid grid-cols-6 sm:grid-cols-6 gap-2.5">
+                        <button onclick="setEmojiLogo('🔥')" class="neo-btn h-11 rounded-xl bg-white text-xl flex items-center justify-center hover:bg-orange-100" title="Cháy">🔥</button>
+                        <button onclick="setEmojiLogo('✨')" class="neo-btn h-11 rounded-xl bg-white text-xl flex items-center justify-center hover:bg-yellow-100" title="Lấp lánh">✨</button>
+                        <button onclick="setEmojiLogo('👑')" class="neo-btn h-11 rounded-xl bg-white text-xl flex items-center justify-center hover:bg-amber-100" title="Vương miện">👑</button>
+                        <button onclick="setEmojiLogo('💸')" class="neo-btn h-11 rounded-xl bg-white text-xl flex items-center justify-center hover:bg-emerald-100" title="Tiền bay">💸</button>
+                        <button onclick="setEmojiLogo('🚀')" class="neo-btn h-11 rounded-xl bg-white text-xl flex items-center justify-center hover:bg-sky-100" title="Tên lửa">🚀</button>
+                        <button onclick="setEmojiLogo('🧋')" class="neo-btn h-11 rounded-xl bg-white text-xl flex items-center justify-center hover:bg-amber-100" title="Trà sữa">🧋</button>
+                        <button onclick="setEmojiLogo('🎮')" class="neo-btn h-11 rounded-xl bg-white text-xl flex items-center justify-center hover:bg-indigo-100" title="Gaming">🎮</button>
+                        <button onclick="setEmojiLogo('🎧')" class="neo-btn h-11 rounded-xl bg-white text-xl flex items-center justify-center hover:bg-purple-100" title="Âm nhạc">🎧</button>
+                        <button onclick="setEmojiLogo('💎')" class="neo-btn h-11 rounded-xl bg-white text-xl flex items-center justify-center hover:bg-cyan-100" title="Kim cương">💎</button>
+                        <button onclick="setEmojiLogo('⚡')" class="neo-btn h-11 rounded-xl bg-white text-xl flex items-center justify-center hover:bg-yellow-100" title="Tia chớp">⚡</button>
+                        <button onclick="setEmojiLogo('❤️‍🔥')" class="neo-btn h-11 rounded-xl bg-white text-xl flex items-center justify-center hover:bg-rose-100" title="Tim cháy">❤️‍🔥</button>
+                        <button onclick="setEmojiLogo('🤙')" class="neo-btn h-11 rounded-xl bg-white text-xl flex items-center justify-center hover:bg-lime-100" title="Chất chơi">🤙</button>
+                    </div>
+
+                    <!-- Vector SVG Icon Grid -->
+                    <div id="sticker-grid-svg" class="hidden grid-cols-4 sm:grid-cols-6 gap-2.5">
+                        <button onclick="setVectorIconLogo('globe')" class="neo-btn h-11 rounded-xl bg-white text-slate-900 flex flex-col items-center justify-center hover:bg-cyan-100" title="Website / Cầu">
+                            <i class="ph-fill ph-globe text-xl"></i>
+                        </button>
+                        <button onclick="setVectorIconLogo('wifi')" class="neo-btn h-11 rounded-xl bg-white text-slate-900 flex flex-col items-center justify-center hover:bg-sky-100" title="Wi-Fi">
+                            <i class="ph-bold ph-wifi-high text-xl"></i>
+                        </button>
+                        <button onclick="setVectorIconLogo('phone')" class="neo-btn h-11 rounded-xl bg-white text-slate-900 flex flex-col items-center justify-center hover:bg-lime-100" title="Điện thoại">
+                            <i class="ph-fill ph-phone-call text-xl"></i>
+                        </button>
+                        <button onclick="setVectorIconLogo('mail')" class="neo-btn h-11 rounded-xl bg-white text-slate-900 flex flex-col items-center justify-center hover:bg-amber-100" title="Email">
+                            <i class="ph-fill ph-envelope-simple text-xl"></i>
+                        </button>
+                        <button onclick="setVectorIconLogo('cart')" class="neo-btn h-11 rounded-xl bg-white text-slate-900 flex flex-col items-center justify-center hover:bg-pink-100" title="Mua sắm">
+                            <i class="ph-fill ph-shopping-cart text-xl"></i>
+                        </button>
+                        <button onclick="setVectorIconLogo('star')" class="neo-btn h-11 rounded-xl bg-white text-slate-900 flex flex-col items-center justify-center hover:bg-yellow-100" title="Ngôi sao">
+                            <i class="ph-fill ph-star text-xl"></i>
+                        </button>
+                        <button onclick="setVectorIconLogo('music')" class="neo-btn h-11 rounded-xl bg-white text-slate-900 flex flex-col items-center justify-center hover:bg-purple-100" title="Nhạc">
+                            <i class="ph-fill ph-music-notes text-xl"></i>
+                        </button>
+                        <button onclick="setVectorIconLogo('camera')" class="neo-btn h-11 rounded-xl bg-white text-slate-900 flex flex-col items-center justify-center hover:bg-rose-100" title="Máy ảnh">
+                            <i class="ph-fill ph-camera text-xl"></i>
+                        </button>
+                        <button onclick="setVectorIconLogo('link')" class="neo-btn h-11 rounded-xl bg-white text-slate-900 flex flex-col items-center justify-center hover:bg-indigo-100" title="Liên kết">
+                            <i class="ph-bold ph-link text-xl"></i>
+                        </button>
+                        <button onclick="setVectorIconLogo('check')" class="neo-btn h-11 rounded-xl bg-white text-slate-900 flex flex-col items-center justify-center hover:bg-emerald-100" title="Tích xanh">
+                            <i class="ph-fill ph-seal-check text-xl"></i>
+                        </button>
+                        <button onclick="setVectorIconLogo('heart')" class="neo-btn h-11 rounded-xl bg-white text-slate-900 flex flex-col items-center justify-center hover:bg-red-100" title="Yêu thích">
+                            <i class="ph-fill ph-heart text-xl"></i>
+                        </button>
+                        <button onclick="setVectorIconLogo('location')" class="neo-btn h-11 rounded-xl bg-white text-slate-900 flex flex-col items-center justify-center hover:bg-orange-100" title="Địa điểm">
+                            <i class="ph-fill ph-map-pin text-xl"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- SUB-PANEL 2: NHẬP EMOJI HOẶC CHỮ TÙY CHỈNH (BADGE) -->
+                <div id="logo-panel-custom" class="hidden space-y-3">
+                    <label class="block font-bold text-xs text-slate-600">
+                        Nhập bất kỳ Emoji nào từ bàn phím hoặc chữ viết tắt (tối đa 4 ký tự, VD: <span class="text-vibe-pink">VIP, SẾP, 2K6, 🦊</span>):
+                    </label>
+                    <div class="flex gap-2.5">
+                        <input type="text" id="custom-badge-input" maxlength="4" placeholder="Gõ Emoji hoặc chữ (VD: VIP)..." class="flex-1 rounded-xl p-3 neo-input font-display font-bold text-base uppercase placeholder:normal-case">
+                        <button onclick="applyCustomTextOrEmoji()" class="neo-btn bg-vibe-cyan hover:bg-cyan-300 text-slate-900 font-display font-extrabold px-5 rounded-xl text-sm flex items-center gap-1.5 shrink-0">
+                            <i class="ph-bold ph-check-circle text-lg"></i>
+                            <span>Chèn Ngay</span>
+                        </button>
+                    </div>
+                    <div class="flex flex-wrap items-center gap-2 pt-1">
+                        <span class="text-[11px] font-bold text-slate-400">Gợi ý nhanh:</span>
+                        <button onclick="quickCustomBadge('VIP')" class="text-xs font-extrabold bg-amber-100 px-2.5 py-1 rounded-lg border border-slate-900 hover:bg-amber-200">VIP</button>
+                        <button onclick="quickCustomBadge('SẾP')" class="text-xs font-extrabold bg-lime-100 px-2.5 py-1 rounded-lg border border-slate-900 hover:bg-lime-200">SẾP</button>
+                        <button onclick="quickCustomBadge('YÊU')" class="text-xs font-extrabold bg-rose-100 px-2.5 py-1 rounded-lg border border-slate-900 hover:bg-rose-200">YÊU</button>
+                        <button onclick="quickCustomBadge('QR')" class="text-xs font-extrabold bg-purple-100 px-2.5 py-1 rounded-lg border border-slate-900 hover:bg-purple-200">QR</button>
+                        <button onclick="quickCustomBadge('🧋✨')" class="text-xs font-extrabold bg-cyan-100 px-2.5 py-1 rounded-lg border border-slate-900 hover:bg-cyan-200">🧋✨</button>
+                    </div>
+                </div>
+
+                <!-- SUB-PANEL 3: TẢI ẢNH TỪ MÁY -->
+                <div id="logo-panel-upload" class="hidden">
+                    <label for="logo-upload" class="cursor-pointer group block p-5 rounded-2xl border-2 border-dashed border-slate-900 bg-slate-50 hover:bg-yellow-50 transition text-center">
+                        <div class="w-11 h-11 rounded-xl bg-white neo-border mx-auto mb-2 flex items-center justify-center text-xl group-hover:scale-110 transition">
+                            <i class="ph-bold ph-upload-simple text-vibe-purple"></i>
+                        </div>
+                        <span class="block font-bold text-sm text-slate-800">Nhấn để chọn ảnh từ thiết bị của bạn</span>
+                        <span class="block text-xs text-slate-500 font-medium mt-0.5">Hỗ trợ PNG, JPG, SVG, WEBP</span>
+                        <input type="file" id="logo-upload" accept="image/*" class="hidden">
+                    </label>
+                </div>
+
+                <!-- BADGE STYLING CONTROLS (Shape, Background Color, Size) -->
+                <div class="mt-5 pt-4 border-t-2 border-dashed border-slate-200 grid grid-cols-1 sm:grid-cols-12 gap-4 items-center">
+                    <!-- Badge Shape -->
+                    <div class="sm:col-span-5">
+                        <label class="block font-bold text-xs text-slate-500 uppercase mb-1.5">Khung viền Logo:</label>
+                        <div class="grid grid-cols-3 gap-1.5" id="badge-shape-btns">
+                            <button onclick="setBadgeShape('rounded')" data-shape="rounded" class="shape-btn neo-btn py-1.5 px-2 rounded-xl font-bold text-xs bg-vibe-yellow">Bo góc</button>
+                            <button onclick="setBadgeShape('circle')" data-shape="circle" class="shape-btn neo-btn py-1.5 px-2 rounded-xl font-bold text-xs bg-white">Tròn</button>
+                            <button onclick="setBadgeShape(' diamond')" data-shape="diamond" class="shape-btn neo-btn py-1.5 px-2 rounded-xl font-bold text-xs bg-white">Kim cương</button>
+                        </div>
+                    </div>
+
+                    <!-- Badge Colors (Bg & Icon Color) -->
+                    <div class="sm:col-span-3 flex items-center gap-3">
+                        <div>
+                            <label class="block font-bold text-[11px] text-slate-500 uppercase mb-1">Nền khung</label>
+                            <input type="color" id="badge-bg-color" value="#FFFFFF" class="w-10 h-9 rounded-lg cursor-pointer neo-border bg-white p-0.5">
+                        </div>
+                        <div>
+                            <label class="block font-bold text-[11px] text-slate-500 uppercase mb-1">Màu Icon/Chữ</label>
+                            <input type="color" id="badge-fg-color" value="#0F172A" class="w-10 h-9 rounded-lg cursor-pointer neo-border bg-white p-0.5">
+                        </div>
+                    </div>
+
+                    <!-- Badge Size Scale -->
+                    <div class="sm:col-span-4">
+                        <div class="flex justify-between items-center mb-1">
+                            <label class="font-bold text-xs text-slate-500 uppercase">Độ lớn:</label>
+                            <span id="badge-scale-label" class="text-[11px] font-extrabold bg-slate-200 px-1.5 py-0.5 rounded border border-slate-900">22%</span>
+                        </div>
+                        <input type="range" id="badge-scale-slider" min="15" max="28" step="1" value="22" class="w-full">
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4. Nút Bắt Đầu Tạo & Dòng Trạng Thái -->
+            <div class="bg-white rounded-3xl p-5 sm:p-6 neo-border shadow-neo space-y-4">
+                <button onclick="handleGenerateQR()" class="neo-btn w-full bg-vibe-pink hover:bg-rose-600 text-white font-display font-extrabold text-lg py-4 px-6 rounded-2xl flex items-center justify-center gap-3">
+                    <i class="ph-bold ph-magic-wand text-2xl"></i>
+                    <span>BẮT ĐẦU TẠO MÃ QR</span>
+                </button>
+
+                <!-- Dòng hiện trạng thái -->
+                <div id="generation-status-bar" class="neo-border rounded-2xl p-3.5 bg-slate-100 text-slate-700 font-bold text-sm flex items-center justify-center gap-2.5 transition-all">
+                    <i id="status-icon" class="ph-fill ph-info text-xl text-slate-600"></i>
+                    <span id="status-text">Trạng thái: Chưa tạo (Hãy nhập thông tin và nhấn "Bắt đầu tạo")</span>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- RIGHT COLUMN: Sticky Live Preview & Export (5 cols) -->
+        <div class="lg:col-span-5 lg:sticky lg:top-8">
+            <div class="bg-vibe-purple rounded-3xl p-6 sm:p-7 neo-border shadow-neo-lg text-white relative overflow-hidden">
+                
+                <!-- Decorative background elements -->
+                <div class="absolute -right-8 -top-8 w-28 h-28 bg-vibe-pink rounded-full opacity-40 blur-xl pointer-events-none"></div>
+                <div class="absolute -left-8 -bottom-8 w-28 h-28 bg-vibe-cyan rounded-full opacity-30 blur-xl pointer-events-none"></div>
+
+                <!-- Top Card Header -->
+                <div class="flex items-center justify-between mb-5 relative z-10">
+                    <div class="flex items-center gap-2">
+                        <span class="inline-block w-3 h-3 rounded-full bg-vibe-lime animate-ping"></span>
+                        <h3 class="font-display font-bold text-lg tracking-wide uppercase">Kết Quả Mã QR</h3>
+                    </div>
+                    <span id="qr-type-badge" class="bg-slate-900 text-vibe-yellow text-xs font-extrabold px-3 py-1 rounded-full border border-white/20">
+                        LINK / TEXT
+                    </span>
+                </div>
+
+                <!-- QR Canvas Wrapper -->
+                <div class="bg-white p-5 rounded-3xl neo-border shadow-neo mx-auto flex flex-col items-center justify-center relative z-10">
+                    <div class="relative w-full aspect-square max-w-[280px] flex items-center justify-center bg-slate-50 rounded-2xl overflow-hidden border-2 border-dashed border-slate-200 p-2">
+                        <!-- Placeholder before generating -->
+                        <div id="qr-empty-placeholder" class="flex flex-col items-center justify-center text-center p-4 text-slate-400">
+                            <i class="ph-duotone ph-qr-code text-6xl text-slate-300 mb-2"></i>
+                            <p class="font-bold text-xs text-slate-500">Mã QR sẽ xuất hiện tại đây sau khi bạn nhấn nút <span class="text-vibe-pink">"Bắt đầu tạo"</span></p>
+                        </div>
+                        <!-- Main QR Canvas -->
+                        <canvas id="qr-canvas" class="hidden w-full h-full object-contain rounded-xl transition-transform duration-300 hover:scale-[1.02]"></canvas>
+                    </div>
+
+                    <!-- Scan status pill -->
+                    <div id="scan-hint-pill" class="mt-4 flex items-center gap-2 bg-slate-100 px-3.5 py-1.5 rounded-full border border-slate-300 text-slate-700 text-xs font-bold">
+                        <i class="ph-fill ph-sparkle text-vibe-purple text-base"></i>
+                        <span id="scan-hint-text">Đang chờ lệnh tạo mã QR từ bạn...</span>
+                    </div>
+                </div>
+
+                <!-- Action Buttons: Download & Copy -->
+                <div class="mt-6 space-y-3 relative z-10">
+                    <button onclick="downloadQR()" class="neo-btn w-full bg-vibe-lime hover:bg-lime-300 text-slate-900 font-display font-extrabold text-base py-4 px-6 rounded-2xl flex items-center justify-center gap-2.5">
+                        <i class="ph-bold ph-download-simple text-xl"></i>
+                        <span>TẢI MÃ QR VỀ MÁY (PNG)</span>
+                    </button>
+
+                    <button onclick="copyQRToClipboard()" class="neo-btn w-full bg-white hover:bg-slate-100 text-slate-900 font-display font-bold text-sm py-3.5 px-6 rounded-2xl flex items-center justify-center gap-2">
+                        <i class="ph-bold ph-copy text-lg text-vibe-purple"></i>
+                        <span>Sao chép ảnh QR vào Clipboard</span>
+                    </button>
+                </div>
+
+                <!-- Summary Info Footer -->
+                <div class="mt-5 pt-4 border-t border-white/20 flex items-center justify-between text-xs font-semibold text-purple-100">
+                    <span id="summary-dimensions">Kích thước: 400x400px</span>
+                    <span id="summary-ec">Chống lỗi: Mức H (30%)</span>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Custom Toast Notification (No alert() used) -->
+    <div id="toast-container" class="fixed bottom-6 right-6 z-50 transform translate-y-24 opacity-0 pointer-events-none transition-all duration-300">
+        <div class="bg-slate-900 text-white neo-border shadow-neo px-5 py-3.5 rounded-2xl flex items-center gap-3 max-w-sm">
+            <div id="toast-icon" class="w-8 h-8 rounded-xl bg-vibe-lime text-slate-900 flex items-center justify-center font-bold text-lg shrink-0">
+                <i class="ph-bold ph-check"></i>
+            </div>
+            <div>
+                <h4 id="toast-title" class="font-bold text-sm text-vibe-yellow">Thành công!</h4>
+                <p id="toast-message" class="text-xs text-slate-200 font-medium">Đã tải mã QR về thiết bị của bạn.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Application Logic -->
+    <script>
+        // --- APPLICATION STATE ---
+        const state = {
+            activeTab: 'url', // 'url' | 'wifi' | 'vcard'
+            fgColor: '#0F172A',
+            bgColor: '#FFFFFF',
+            size: 400,
+            ecLevel: 'H', // 'L', 'M', 'Q', 'H'
+            logoImage: null, // Image object if uploaded or generated from emoji/icon/text
+            logoSource: null, // { type: 'emoji'|'svg'|'text'|'upload', value: string }
+            badgeShape: 'rounded', // 'rounded' | 'circle' | 'diamond'
+            badgeBgColor: '#FFFFFF',
+            badgeFgColor: '#0F172A',
+            badgeScale: 0.22,
+            isGenerated: false
+        };
+
+        // SVG Vector Paths (24x24 viewBox) for crisp rendering on Canvas
+        const VECTOR_ICONS = {
+            globe: '<circle cx="12" cy="12" r="9" fill="none" stroke="CURRENT_COLOR" stroke-width="2.2"/><ellipse cx="12" cy="12" rx="4" ry="9" fill="none" stroke="CURRENT_COLOR" stroke-width="2.2"/><line x1="3" y1="12" x2="21" y2="12" stroke="CURRENT_COLOR" stroke-width="2.2"/>',
+            wifi: '<path d="M2 8.82a15 15 0 0 1 20 0M5 12.859a10 10 0 0 1 14 0M8.5 16.429a5 5 0 0 1 7 0" fill="none" stroke="CURRENT_COLOR" stroke-width="2.4" stroke-linecap="round"/><circle cx="12" cy="20" r="1.5" fill="CURRENT_COLOR"/>',
+            phone: '<path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" fill="CURRENT_COLOR"/>',
+            mail: '<rect width="20" height="16" x="2" y="4" rx="2" fill="none" stroke="CURRENT_COLOR" stroke-width="2.2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" fill="none" stroke="CURRENT_COLOR" stroke-width="2.2"/>',
+            cart: '<circle cx="8" cy="21" r="1.8" fill="CURRENT_COLOR"/><circle cx="19" cy="21" r="1.8" fill="CURRENT_COLOR"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12" fill="none" stroke="CURRENT_COLOR" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>',
+            star: '<polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" fill="CURRENT_COLOR" stroke="CURRENT_COLOR" stroke-width="1.5" stroke-linejoin="round"/>',
+            music: '<path d="M9 18V5l12-2v13" fill="none" stroke="CURRENT_COLOR" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="6" cy="18" r="3" fill="CURRENT_COLOR"/><circle cx="18" cy="16" r="3" fill="CURRENT_COLOR"/>',
+            camera: '<path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z" fill="none" stroke="CURRENT_COLOR" stroke-width="2.2" stroke-linejoin="round"/><circle cx="12" cy="13" r="3.5" fill="CURRENT_COLOR"/>',
+            link: '<path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" fill="none" stroke="CURRENT_COLOR" stroke-width="2.4" stroke-linecap="round"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" fill="none" stroke="CURRENT_COLOR" stroke-width="2.4" stroke-linecap="round"/>',
+            check: '<path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z" fill="CURRENT_COLOR"/><path d="m9 12 2 2 4-4" fill="none" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>',
+            heart: '<path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" fill="CURRENT_COLOR"/>',
+            location: '<path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" fill="none" stroke="CURRENT_COLOR" stroke-width="2.2"/><circle cx="12" cy="10" r="3" fill="CURRENT_COLOR"/>'
+        };
+
+        // DOM Elements
+        const canvas = document.getElementById('qr-canvas');
+        const ctx = canvas.getContext('2d');
+
+        // Initialize QRious instance on an offscreen canvas so we can composite the logo cleanly
+        const offscreenCanvas = document.createElement('canvas');
+        const qrEngine = new QRious({
+            element: offscreenCanvas,
+            size: state.size,
+            value: 'https://google.com',
+            level: state.ecLevel,
+            foreground: state.fgColor,
+            background: state.bgColor,
+            padding: 16
+        });
+
+        // --- STATUS LINE UPDATER ---
+        function updateStatusLine(statusType, message) {
+            const bar = document.getElementById('generation-status-bar');
+            const icon = document.getElementById('status-icon');
+            const text = document.getElementById('status-text');
+            const hintText = document.getElementById('scan-hint-text');
+
+            text.textContent = message;
+
+            if (statusType === 'success') {
+                bar.className = 'neo-border rounded-2xl p-3.5 bg-vibe-lime text-slate-900 font-extrabold text-sm flex items-center justify-center gap-2.5 transition-all';
+                icon.className = 'ph-fill ph-check-circle text-xl text-slate-900';
+                hintText.textContent = 'Mở camera điện thoại quét thử ngay!';
+            } else if (statusType === 'error') {
+                bar.className = 'neo-border rounded-2xl p-3.5 bg-rose-100 text-rose-800 font-extrabold text-sm flex items-center justify-center gap-2.5 transition-all';
+                icon.className = 'ph-fill ph-x-circle text-xl text-vibe-pink';
+                hintText.textContent = 'Tạo không thành công, vui lòng kiểm tra lại!';
+            } else {
+                bar.className = 'neo-border rounded-2xl p-3.5 bg-slate-100 text-slate-700 font-bold text-sm flex items-center justify-center gap-2.5 transition-all';
+                icon.className = 'ph-fill ph-info text-xl text-slate-600';
+                hintText.textContent = 'Nhấn "Bắt đầu tạo" để cập nhật mã QR...';
+            }
+        }
+
+        // --- TAB SWITCHING ---
+        function switchTab(tabName) {
+            state.activeTab = tabName;
+
+            // Update tab button styles
+            const tabs = ['url', 'wifi', 'vcard'];
+            tabs.forEach(t => {
+                const btn = document.getElementById(`tab-${t}`);
+                const form = document.getElementById(`form-${t}`);
+                if (t === tabName) {
+                    btn.classList.remove('bg-white', 'hover:bg-slate-50');
+                    btn.classList.add('bg-vibe-yellow');
+                    form.classList.remove('hidden');
+                } else {
+                    btn.classList.remove('bg-vibe-yellow');
+                    btn.classList.add('bg-white', 'hover:bg-slate-50');
+                    form.classList.add('hidden');
+                }
+            });
+
+            // Update Badge
+            const badgeMap = {
+                'url': 'LINK / TEXT',
+                'wifi': 'WI-FI TỰ ĐỘNG',
+                'vcard': 'DANH THIẾP (VCARD)'
+            };
+            document.getElementById('qr-type-badge').textContent = badgeMap[tabName];
+
+            updateStatusLine('pending', 'Trạng thái: Đã đổi loại nội dung (Nhấn "Bắt đầu tạo" để tạo QR)');
+        }
+
+        // --- VALIDATE & BUILD PAYLOAD ---
+        function validateAndBuildPayload() {
+            if (state.activeTab === 'url') {
+                const val = document.getElementById('input-url').value.trim();
+                if (!val) {
+                    return { ok: false, error: 'Tạo không thành công: Bạn chưa nhập đường dẫn hoặc văn bản!' };
+                }
+                return { ok: true, payload: val };
+            } 
+            
+            if (state.activeTab === 'wifi') {
+                const ssid = document.getElementById('wifi-ssid').value.trim();
+                const pass = document.getElementById('wifi-pass').value;
+                const type = document.getElementById('wifi-type').value;
+                const hidden = document.getElementById('wifi-hidden').checked ? 'true' : 'false';
+                
+                if (!ssid) {
+                    return { ok: false, error: 'Tạo không thành công: Vui lòng nhập Tên mạng Wi-Fi (SSID)!' };
+                }
+                
+                // Escape special characters in Wi-Fi strings
+                const escapeWifi = (str) => str.replace(/([\\;,:])/g, '\\$1');
+                return {
+                    ok: true,
+                    payload: `WIFI:T:${type};S:${escapeWifi(ssid)};P:${escapeWifi(pass)};H:${hidden};;`
+                };
+            }
+
+            if (state.activeTab === 'vcard') {
+                const name = document.getElementById('vcard-name').value.trim();
+                const phone = document.getElementById('vcard-phone').value.trim();
+                const email = document.getElementById('vcard-email').value.trim();
+                const org = document.getElementById('vcard-org').value.trim();
+                const url = document.getElementById('vcard-url').value.trim();
+
+                if (!name && !phone) {
+                    return { ok: false, error: 'Tạo không thành công: Vui lòng nhập Họ tên hoặc Số điện thoại!' };
+                }
+
+                const vcardLines = [
+                    'BEGIN:VCARD',
+                    'VERSION:3.0',
+                    `FN:${name || 'Liên hệ mới'}`,
+                    `N:${name || 'Liên hệ mới'};;;`,
+                ];
+                if (org) vcardLines.push(`ORG:${org}`);
+                if (phone) vcardLines.push(`TEL;TYPE=CELL:${phone}`);
+                if (email) vcardLines.push(`EMAIL:${email}`);
+                if (url) vcardLines.push(`URL:${url}`);
+                vcardLines.push('END:VCARD');
+
+                return { ok: true, payload: vcardLines.join('\n') };
+            }
+
+            return { ok: false, error: 'Tạo không thành công: Dữ liệu không hợp lệ!' };
+        }
+
+        // --- BUTTON HANDLER: BẮT ĐẦU TẠO ---
+        function handleGenerateQR() {
+            const result = validateAndBuildPayload();
+
+            if (!result.ok) {
+                state.isGenerated = false;
+                document.getElementById('qr-canvas').classList.add('hidden');
+                document.getElementById('qr-empty-placeholder').classList.remove('hidden');
+                updateStatusLine('error', `Trạng thái: ${result.error}`);
+                showToast('Tạo không thành công!', result.error, true);
+                return;
+            }
+
+            // Render QR onto Canvas
+            renderQRCodeWithPayload(result.payload);
+            state.isGenerated = true;
+
+            document.getElementById('qr-empty-placeholder').classList.add('hidden');
+            document.getElementById('qr-canvas').classList.remove('hidden');
+
+            updateStatusLine('success', 'Trạng thái: Tạo mã QR thành công! ✨');
+            showToast('Tạo thành công! 🎉', 'Mã QR của bạn đã sẵn sàng để quét và tải xuống.');
+        }
+
+        // --- MAIN QR RENDERING WITH CENTER LOGO ---
+        function renderQRCodeWithPayload(payload) {
+            // Configure QRious offscreen engine
+            qrEngine.set({
+                value: payload,
+                size: state.size,
+                level: state.ecLevel,
+                foreground: state.fgColor,
+                background: state.bgColor,
+                padding: Math.round(state.size * 0.05)
+            });
+
+            // Sync main visible canvas dimensions
+            canvas.width = state.size;
+            canvas.height = state.size;
+
+            // Clear & Draw base QR code
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.drawImage(offscreenCanvas, 0, 0, state.size, state.size);
+
+            // Draw Center Logo / Badge if present
+            if (state.logoImage) {
+                const logoBoxSize = Math.round(state.size * state.badgeScale);
+                const cx = state.size / 2;
+                const cy = state.size / 2;
+                const x = cx - logoBoxSize / 2;
+                const y = cy - logoBoxSize / 2;
+                const pad = Math.max(5, Math.round(state.size * 0.015));
+
+                ctx.save();
+
+                // 1. Draw outer protective plate + border according to selected shape
+                ctx.fillStyle = state.badgeBgColor;
+                ctx.lineWidth = Math.max(2.5, Math.round(state.size * 0.009));
+                ctx.strokeStyle = state.fgColor;
+
+                drawBadgeShapePath(ctx, cx, cy, logoBoxSize + pad * 2, state.badgeShape);
+                ctx.fill();
+                ctx.stroke();
+
+                // 2. Clip inner area for the graphic/image
+                drawBadgeShapePath(ctx, cx, cy, logoBoxSize, state.badgeShape);
+                ctx.clip();
+
+                // Fill badge background inside clip too
+                ctx.fillStyle = state.badgeBgColor;
+                ctx.fillRect(x, y, logoBoxSize, logoBoxSize);
+
+                // 3. Draw the image inside clipped area
+                ctx.drawImage(state.logoImage, x, y, logoBoxSize, logoBoxSize);
+                ctx.restore();
+            }
+
+            // Update footer summaries
+            document.getElementById('summary-dimensions').textContent = `Kích thước: ${state.size}x${state.size}px`;
+            const ecMap = {
+                'L': 'Mức L (7%)',
+                'M': 'Mức M (15%)',
+                'Q': 'Mức Q (25%)',
+                'H': 'Mức H (30%)'
+            };
+            document.getElementById('summary-ec').textContent = `Chống lỗi: ${ecMap[state.ecLevel]}`;
+        }
+
+        // Helper for drawing badge shapes (rounded, circle, diamond)
+        function drawBadgeShapePath(context, cx, cy, size, shape) {
+            const half = size / 2;
+            if (shape === 'circle') {
+                context.beginPath();
+                context.arc(cx, cy, half, 0, Math.PI * 2);
+                context.closePath();
+            } else if (shape === 'diamond') {
+                context.beginPath();
+                context.moveTo(cx, cy - half * 1.08);
+                context.lineTo(cx + half * 1.08, cy);
+                context.lineTo(cx, cy + half * 1.08);
+                context.lineTo(cx - half * 1.08, cy);
+                context.closePath();
+            } else {
+                // Default: 'rounded'
+                const radius = Math.round(size * 0.24);
+                drawRoundedRect(context, cx - half, cy - half, size, size, radius);
+            }
+        }
+
+        // Helper for drawing rounded rectangles on Canvas
+        function drawRoundedRect(context, x, y, width, height, radius) {
+            context.beginPath();
+            context.moveTo(x + radius, y);
+            context.lineTo(x + width - radius, y);
+            context.quadraticCurveTo(x + width, y, x + width, y + radius);
+            context.lineTo(x + width, y + height - radius);
+            context.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
+            context.lineTo(x + radius, y + height);
+            context.quadraticCurveTo(x, y + height, x, y + height - radius);
+            context.lineTo(x, y + radius);
+            context.quadraticCurveTo(x, y, x + radius, y);
+            context.closePath();
+        }
+
+        // --- QUICK ACTIONS & CUSTOMIZATION HANDLERS ---
+        function setQuickUrl(text) {
+            const input = document.getElementById('input-url');
+            input.value = text;
+            updateStatusLine('pending', 'Trạng thái: Đã chọn mẫu (Nhấn "Bắt đầu tạo" để tạo QR)');
+            showToast('Đã điền mẫu!', 'Nhấn nút "Bắt đầu tạo" để xuất mã QR nhé.');
+        }
+
+        function applyColorPreset(fg, bg) {
+            state.fgColor = fg;
+            state.bgColor = bg;
+            document.getElementById('qr-fg-color').value = fg;
+            document.getElementById('qr-bg-color').value = bg;
+            document.getElementById('fg-hex-label').textContent = fg;
+            document.getElementById('bg-hex-label').textContent = bg;
+            updateStatusLine('pending', 'Trạng thái: Đã đổi màu (Nhấn "Bắt đầu tạo" để áp dụng)');
+        }
+
+        function setErrorCorrection(level) {
+            state.ecLevel = level;
+            document.querySelectorAll('.ec-btn').forEach(btn => {
+                if (btn.dataset.level === level) {
+                    btn.classList.remove('bg-white');
+                    btn.classList.add('bg-vibe-yellow');
+                } else {
+                    btn.classList.remove('bg-vibe-yellow');
+                    btn.classList.add('bg-white');
+                }
+            });
+            updateStatusLine('pending', 'Trạng thái: Đã đổi mức chống lỗi (Nhấn "Bắt đầu tạo" để áp dụng)');
+        }
+
+        // --- LOGO SUB-TABS & STICKER CATEGORIES ---
+        function switchLogoTab(tab) {
+            const tabs = ['icon', 'custom', 'upload'];
+            tabs.forEach(t => {
+                const btn = document.getElementById(`logo-tab-${t}`);
+                const panel = document.getElementById(`logo-panel-${t}`);
+                if (t === tab) {
+                    btn.className = 'py-2 px-3 rounded-xl font-bold text-xs sm:text-sm flex items-center justify-center gap-1.5 bg-vibe-yellow neo-border shadow-neo-sm transition';
+                    panel.classList.remove('hidden');
+                } else {
+                    btn.className = 'py-2 px-3 rounded-xl font-bold text-xs sm:text-sm flex items-center justify-center gap-1.5 bg-transparent hover:bg-white/60 transition';
+                    panel.classList.add('hidden');
+                }
+            });
+        }
+
+        function switchStickerCategory(cat) {
+            const emojiBtn = document.getElementById('cat-btn-emoji');
+            const svgBtn = document.getElementById('cat-btn-svg');
+            const emojiGrid = document.getElementById('sticker-grid-emoji');
+            const svgGrid = document.getElementById('sticker-grid-svg');
+
+            if (cat === 'emoji') {
+                emojiBtn.className = 'text-xs font-extrabold px-3 py-1.5 rounded-xl neo-border bg-vibe-pink text-white shadow-neo-sm transition';
+                svgBtn.className = 'text-xs font-extrabold px-3 py-1.5 rounded-xl neo-border bg-white text-slate-800 hover:bg-slate-100 transition';
+                emojiGrid.classList.remove('hidden');
+                emojiGrid.classList.add('grid');
+                svgGrid.classList.add('hidden');
+                svgGrid.classList.remove('grid');
+            } else {
+                svgBtn.className = 'text-xs font-extrabold px-3 py-1.5 rounded-xl neo-border bg-vibe-pink text-white shadow-neo-sm transition';
+                emojiBtn.className = 'text-xs font-extrabold px-3 py-1.5 rounded-xl neo-border bg-white text-slate-800 hover:bg-slate-100 transition';
+                svgGrid.classList.remove('hidden');
+                svgGrid.classList.add('grid');
+                emojiGrid.classList.add('hidden');
+                emojiGrid.classList.remove('grid');
+            }
+        }
+
+        // Helper to refresh live preview if QR was already generated
+        function refreshPreviewIfGenerated(statusMsg) {
+            if (state.isGenerated) {
+                const res = validateAndBuildPayload();
+                if (res.ok) {
+                    renderQRCodeWithPayload(res.payload);
+                    updateStatusLine('success', `${statusMsg} (Đã cập nhật trực tiếp lên QR ✨)`);
+                    return;
+                }
+            }
+            updateStatusLine('pending', `Trạng thái: ${statusMsg} (Nhấn "Bắt đầu tạo" để áp dụng)`);
+        }
+
+        // --- LOGO HANDLING (UPLOAD, EMOJI, VECTOR ICON, CUSTOM TEXT BADGE) ---
+        document.getElementById('logo-upload').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function(event) {
+                const img = new Image();
+                img.onload = function() {
+                    state.logoImage = img;
+                    state.logoSource = { type: 'upload', value: event.target.result };
+                    document.getElementById('remove-logo-btn').classList.remove('hidden');
+                    refreshPreviewIfGenerated('Đã tải ảnh Logo lên');
+                    showToast('Đã tải Logo!', 'Ảnh của bạn đã sẵn sàng ở tâm mã QR.');
+                };
+                img.src = event.target.result;
+            };
+            reader.readAsDataURL(file);
+        });
+
+        function setEmojiLogo(emoji) {
+            state.logoSource = { type: 'emoji', value: emoji };
+            buildCanvasLogoFromSource(() => {
+                document.getElementById('remove-logo-btn').classList.remove('hidden');
+                refreshPreviewIfGenerated(`Đã chọn Sticker ${emoji}`);
+                showToast('Đã gắn Sticker!', `Sticker ${emoji} đã được chọn làm tâm QR.`);
+            });
+        }
+
+        function setVectorIconLogo(iconKey) {
+            if (!VECTOR_ICONS[iconKey]) return;
+            state.logoSource = { type: 'svg', value: iconKey };
+            buildCanvasLogoFromSource(() => {
+                document.getElementById('remove-logo-btn').classList.remove('hidden');
+                refreshPreviewIfGenerated(`Đã chọn Icon ${iconKey.toUpperCase()}`);
+                showToast('Đã gắn Icon Vector!', 'Icon sắc nét đã được đặt vào giữa mã QR.');
+            });
+        }
+
+        function applyCustomTextOrEmoji() {
+            const raw = document.getElementById('custom-badge-input').value.trim();
+            if (!raw) {
+                showToast('Chưa nhập nội dung!', 'Hãy gõ Emoji hoặc 1-4 chữ cái vào ô trống nhé.', true);
+                return;
+            }
+            state.logoSource = { type: 'text', value: raw };
+            buildCanvasLogoFromSource(() => {
+                document.getElementById('remove-logo-btn').classList.remove('hidden');
+                refreshPreviewIfGenerated(`Đã tạo huy hiệu "${raw}"`);
+                showToast('Đã chèn huy hiệu!', `Nội dung "${raw}" đã được gắn vào giữa QR.`);
+            });
+        }
+
+        function quickCustomBadge(val) {
+            document.getElementById('custom-badge-input').value = val;
+            applyCustomTextOrEmoji();
+        }
+
+        // Regenerate the offscreen logo image when badge colors or source change
+        function buildCanvasLogoFromSource(callback) {
+            if (!state.logoSource) return;
+
+            if (state.logoSource.type === 'emoji' || state.logoSource.type === 'text') {
+                const textVal = state.logoSource.value;
+                const tempCanvas = document.createElement('canvas');
+                tempCanvas.width = 200;
+                tempCanvas.height = 200;
+                const tCtx = tempCanvas.getContext('2d');
+
+                tCtx.fillStyle = state.badgeBgColor;
+                tCtx.fillRect(0, 0, 200, 200);
+
+                // Dynamic font size based on length
+                const charLen = Array.from(textVal).length;
+                let fontSize = 115;
+                if (charLen === 2) fontSize = 86;
+                else if (charLen === 3) fontSize = 66;
+                else if (charLen >= 4) fontSize = 52;
+
+                tCtx.fillStyle = state.badgeFgColor;
+                tCtx.font = `800 ${fontSize}px "Space Grotesk", "Plus Jakarta Sans", sans-serif`;
+                tCtx.textAlign = 'center';
+                tCtx.textBaseline = 'middle';
+                tCtx.fillText(textVal, 100, 106);
+
+                const img = new Image();
+                img.onload = function() {
+                    state.logoImage = img;
+                    if (callback) callback();
+                };
+                img.src = tempCanvas.toDataURL('image/png');
+            } else if (state.logoSource.type === 'svg') {
+                const svgBody = VECTOR_ICONS[state.logoSource.value].replace(/CURRENT_COLOR/g, state.badgeFgColor);
+                const svgString = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="200" height="200">
+                    <rect width="24" height="24" fill="${state.badgeBgColor}"/>
+                    <g transform="translate(3.2, 3.2) scale(0.733)">${svgBody}</g>
+                </svg>`;
+                const img = new Image();
+                img.onload = function() {
+                    state.logoImage = img;
+                    if (callback) callback();
+                };
+                img.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svgString);
+            }
+        }
+
+        function setBadgeShape(shape) {
+            state.badgeShape = shape.trim();
+            document.querySelectorAll('.shape-btn').forEach(btn => {
+                if (btn.dataset.shape.trim() === state.badgeShape) {
+                    btn.classList.remove('bg-white');
+                    btn.classList.add('bg-vibe-yellow');
+                } else {
+                    btn.classList.remove('bg-vibe-yellow');
+                    btn.classList.add('bg-white');
+                }
+            });
+            refreshPreviewIfGenerated('Đã đổi khung viền Logo');
+        }
+
+        function removeLogo() {
+            state.logoImage = null;
+            state.logoSource = null;
+            document.getElementById('logo-upload').value = '';
+            document.getElementById('custom-badge-input').value = '';
+            document.getElementById('remove-logo-btn').classList.add('hidden');
+            refreshPreviewIfGenerated('Đã gỡ Logo/Icon');
+            showToast('Đã xóa Logo/Icon', 'Mã QR đã trở về trạng thái không có tâm.');
+        }
+
+        // --- EXPORT: DOWNLOAD & COPY ---
+        function downloadQR() {
+            if (!state.isGenerated) {
+                updateStatusLine('error', 'Trạng thái: Chưa có mã QR để tải! Hãy nhấn "Bắt đầu tạo" trước.');
+                showToast('Chưa tạo mã QR!', 'Bạn cần nhấn nút "Bắt đầu tạo" trước khi tải xuống.', true);
+                return;
+            }
+            try {
+                const dataUrl = canvas.toDataURL('image/png');
+                const link = document.createElement('a');
+                link.download = `qr-vibe-${Date.now()}.png`;
+                link.href = dataUrl;
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                showToast('Tải xuống thành công! 🎉', 'Ảnh PNG chất lượng cao đã được lưu về máy.');
+            } catch (err) {
+                showToast('Ối có lỗi!', 'Không thể tải ảnh xuống lúc này.', true);
+            }
+        }
+
+        async function copyQRToClipboard() {
+            if (!state.isGenerated) {
+                updateStatusLine('error', 'Trạng thái: Chưa có mã QR để sao chép! Hãy nhấn "Bắt đầu tạo" trước.');
+                showToast('Chưa tạo mã QR!', 'Bạn cần nhấn nút "Bắt đầu tạo" trước khi sao chép.', true);
+                return;
+            }
+            try {
+                canvas.toBlob(async function(blob) {
+                    if (navigator.clipboard && window.ClipboardItem) {
+                        try {
+                            const item = new ClipboardItem({ 'image/png': blob });
+                            await navigator.clipboard.write([item]);
+                            showToast('Đã sao chép ảnh QR! 📋', 'Nhấn Ctrl+V (hoặc Dán) vào khung chat để gửi ngay.');
+                            return;
+                        } catch (clipboardErr) {
+                            copyPayloadTextFallback();
+                        }
+                    } else {
+                        copyPayloadTextFallback();
+                    }
+                }, 'image/png');
+            } catch (e) {
+                copyPayloadTextFallback();
+            }
+        }
+
+        function copyPayloadTextFallback() {
+            const res = validateAndBuildPayload();
+            const tempInput = document.createElement('textarea');
+            tempInput.value = res.ok ? res.payload : '';
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+            showToast('Đã sao chép nội dung QR!', 'Trình duyệt hạn chế copy ảnh trực tiếp nên mình đã copy nội dung văn bản cho bạn.');
+        }
+
+        // --- RESET ALL ---
+        function resetAll() {
+            document.getElementById('input-url').value = '';
+            document.getElementById('wifi-ssid').value = '';
+            document.getElementById('wifi-pass').value = '';
+            document.getElementById('vcard-name').value = '';
+            document.getElementById('vcard-phone').value = '';
+            document.getElementById('vcard-email').value = '';
+            document.getElementById('vcard-org').value = '';
+            document.getElementById('vcard-url').value = '';
+            
+            state.size = 400;
+            state.isGenerated = false;
+            document.getElementById('qr-size').value = 400;
+            document.getElementById('size-value-label').textContent = '400 x 400 px';
+            
+            document.getElementById('qr-canvas').classList.add('hidden');
+            document.getElementById('qr-empty-placeholder').classList.remove('hidden');
+
+            removeLogo();
+            setErrorCorrection('H');
+            applyColorPreset('#0F172A', '#FFFFFF');
+            switchTab('url');
+            updateStatusLine('pending', 'Trạng thái: Đã làm mới (Hãy nhập thông tin và nhấn "Bắt đầu tạo")');
+            showToast('Đã làm mới!', 'Tất cả cài đặt đã quay về mặc định.');
+        }
+
+        // --- TOAST NOTIFICATION SYSTEM ---
+        let toastTimeout;
+        function showToast(title, message, isError = false) {
+            const container = document.getElementById('toast-container');
+            const iconBox = document.getElementById('toast-icon');
+            document.getElementById('toast-title').textContent = title;
+            document.getElementById('toast-message').textContent = message;
+
+            if (isError) {
+                iconBox.className = 'w-8 h-8 rounded-xl bg-vibe-pink text-white flex items-center justify-center font-bold text-lg shrink-0';
+                iconBox.innerHTML = '<i class="ph-bold ph-warning"></i>';
+            } else {
+                iconBox.className = 'w-8 h-8 rounded-xl bg-vibe-lime text-slate-900 flex items-center justify-center font-bold text-lg shrink-0';
+                iconBox.innerHTML = '<i class="ph-bold ph-check"></i>';
+            }
+
+            container.classList.remove('translate-y-24', 'opacity-0');
+            clearTimeout(toastTimeout);
+            toastTimeout = setTimeout(() => {
+                container.classList.add('translate-y-24', 'opacity-0');
+            }, 3200);
+        }
+
+        // --- EVENT LISTENERS FOR UI CONTROLS (NO AUTO-GENERATE) ---
+        function attachControlListeners() {
+            // Color pickers only update labels & state, waiting for "Bắt đầu tạo"
+            document.getElementById('qr-fg-color').addEventListener('input', (e) => {
+                state.fgColor = e.target.value;
+                document.getElementById('fg-hex-label').textContent = e.target.value;
+                updateStatusLine('pending', 'Trạng thái: Đã đổi màu chấm (Nhấn "Bắt đầu tạo" để áp dụng)');
+            });
+
+            document.getElementById('qr-bg-color').addEventListener('input', (e) => {
+                state.bgColor = e.target.value;
+                document.getElementById('bg-hex-label').textContent = e.target.value;
+                updateStatusLine('pending', 'Trạng thái: Đã đổi màu nền (Nhấn "Bắt đầu tạo" để áp dụng)');
+            });
+
+            // Size Slider only updates label & state
+            document.getElementById('qr-size').addEventListener('input', (e) => {
+                state.size = parseInt(e.target.value, 10);
+                document.getElementById('size-value-label').textContent = `${state.size} x ${state.size} px`;
+                refreshPreviewIfGenerated('Đã đổi kích thước ảnh');
+            });
+
+            // Badge Background & Foreground Color Pickers
+            document.getElementById('badge-bg-color').addEventListener('input', (e) => {
+                state.badgeBgColor = e.target.value;
+                if (state.logoSource && state.logoSource.type !== 'upload') {
+                    buildCanvasLogoFromSource(() => refreshPreviewIfGenerated('Đã đổi màu nền khung Logo'));
+                } else {
+                    refreshPreviewIfGenerated('Đã đổi màu nền khung Logo');
+                }
+            });
+
+            document.getElementById('badge-fg-color').addEventListener('input', (e) => {
+                state.badgeFgColor = e.target.value;
+                if (state.logoSource && state.logoSource.type !== 'upload') {
+                    buildCanvasLogoFromSource(() => refreshPreviewIfGenerated('Đã đổi màu Icon/Chữ'));
+                }
+            });
+
+            // Badge Scale Slider
+            document.getElementById('badge-scale-slider').addEventListener('input', (e) => {
+                const pct = parseInt(e.target.value, 10);
+                state.badgeScale = pct / 100;
+                document.getElementById('badge-scale-label').textContent = `${pct}%`;
+                refreshPreviewIfGenerated(`Đã chỉnh cỡ Logo (${pct}%)`);
+            });
+        }
+
+        // Initialize on load
+        window.addEventListener('DOMContentLoaded', () => {
+            attachControlListeners();
+        });
+    </script>
+</body>
+</html>
