@@ -1,6 +1,6 @@
 <div align="center">
 
-## ⚡&nbsp;QR&nbsp;VIBE&nbsp;PRO&nbsp;MAX&nbsp;⚡⚡ 
+## ⚡&nbsp;QR&nbsp;VIBE&nbsp;PRO&nbsp;MAX&nbsp;⚡ 
 ### **Biến mọi thứ thành mã QR cực nghệ chỉ trong 3 giây — Phong cách Chuẩn Gen Z**
 
 [![Live Demo](https://img.shields.io/badge/🚀_XEM_WEB_TRỰC_TIẾP-QR_VIBE_PRO_MAX-F43F5E?style=for-the-badge&logoColor=white)](https://hhd-z.github.io/CreateQRCode/)
