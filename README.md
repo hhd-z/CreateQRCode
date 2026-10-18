@@ -6,7 +6,7 @@
 [![Live Demo](https://img.shields.io/badge/🚀_XEM_WEB_TRỰC_TIẾP-QR_VIBE_PRO_MAX-F43F5E?style=for-the-badge&logoColor=white)](https://hhd-z.github.io/CreateQRCode/)
 [![UTF-8 Ready](https://img.shields.io/badge/Tiếng_Việt_Có_Dấu-UTF--8_100%25-A3E635?style=for-the-badge&labelColor=0F172A)](#)
 [![Design Style](https://img.shields.io/badge/UI_Style-Neo--Brutalism-FACC15?style=for-the-badge&labelColor=0F172A)](#)
-[![License](https://img.shields.io/badge/License-Apache_2.0-38BDF8?style=flat-square&labelColor=0F172A&color=38BDF8)](#)
+[![License](https://img.shields.io/badge/License-MIT-38BDF8?style=flat-square&labelColor=0F172A&color=38BDF8)](./LICENSE)
 
 
 <p align="center">
