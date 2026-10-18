@@ -1,1 +1,1 @@
-Vì là mã nguồn mở 100% nên bất kì ai hay bạn có thể sử dụng mã nguồn này, nhưng tôi xin nói tôi sẽ không bao giờ chịu trắc nhiệm cho bất kì việc gì
+Vì là mã nguồn mở 100% nên bất kì ai hay bạn có thể sử dụng mã nguồn này, nhưng tôi xin nói tôi sẽ không bao giờ chịu trắc nhiệm cho bất kì việc gì do tôi hay do nhưng người sử dụng mã nguồn. Web được viết 100% bằng mô hình AI Gemini 4 Argon
