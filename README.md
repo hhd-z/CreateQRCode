@@ -98,6 +98,6 @@ Dự án được đóng gói theo kiến trúc **Single-File Application** cự
 ### Made with Gemini 4 argon ❤️ & Vibe by **[Me](https://github.com/hhd-z)**
 Nếu bạn thấy dự án này hữu ích và xịn xò, đừng quên tặng cho repo một ngôi sao ⭐ trên GitHub nhé!
 
-(./donate.jpg)
+![QR Donate](./donate.jpg)
 
 </div>
