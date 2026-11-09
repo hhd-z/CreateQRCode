@@ -229,7 +229,7 @@
     <!-- Header Section -->
     <header class="max-w-6xl mx-auto px-4 pt-5 pb-3">
         <div class="flex flex-col sm:flex-row items-center justify-between gap-3 bg-white p-4 sm:p-5 rounded-3xl neo-border shadow-neo">
-            <div class="flex items-center gap-3.5">
+            <div class="flex items-center gap-3.5 w-full sm:w-auto">
                 <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-vibe-pink neo-border shadow-neo-sm flex items-center justify-center text-white text-2xl sm:text-3xl shrink-0">
                     <i class="ph-bold ph-qr-code"></i>
                 </div>
@@ -242,10 +242,18 @@
                 </div>
             </div>
 
-            <button type="button" onclick="resetAll()" class="neo-btn bg-white hover:bg-slate-100 text-slate-900 px-4 py-2.5 rounded-xl text-xs sm:text-sm gap-2 w-full sm:w-auto">
-                <i class="ph-bold ph-arrows-counter-clockwise text-base text-vibe-purple"></i>
-                <span>Làm mới từ đầu</span>
-            </button>
+            <!-- Action Buttons: Hỗ trợ Dev & Làm mới -->
+            <div class="flex items-center gap-2.5 w-full sm:w-auto">
+                <button type="button" onclick="openDonateModal()" class="neo-btn bg-vibe-yellow hover:bg-amber-300 text-slate-900 px-4 py-2.5 rounded-xl text-xs sm:text-sm gap-2 flex-1 sm:flex-initial">
+                    <i class="ph-fill ph-coffee text-base text-rose-600"></i>
+                    <span>Hỗ trợ Dev ☕</span>
+                </button>
+
+                <button type="button" onclick="resetAll()" class="neo-btn bg-white hover:bg-slate-100 text-slate-900 px-4 py-2.5 rounded-xl text-xs sm:text-sm gap-2 flex-1 sm:flex-initial">
+                    <i class="ph-bold ph-arrows-counter-clockwise text-base text-vibe-purple"></i>
+                    <span>Làm mới từ đầu</span>
+                </button>
+            </div>
         </div>
     </header>
 
@@ -683,6 +691,12 @@
                         <i class="ph-bold ph-copy text-lg text-vibe-purple"></i>
                         <span>Sao chép ảnh QR vào Clipboard</span>
                     </button>
+
+                    <!-- Quick Donate Trigger inside Preview Card -->
+                    <button type="button" onclick="openDonateModal()" class="neo-btn w-full bg-vibe-yellow hover:bg-amber-300 text-slate-900 font-display text-xs sm:text-sm py-3 px-4 rounded-2xl gap-2">
+                        <i class="ph-fill ph-heart text-base text-rose-600"></i>
+                        <span>Thấy web hữu ích? Nuôi Dev ly trà sữa 🧋</span>
+                    </button>
                 </div>
 
                 <!-- Footer Specs -->
@@ -694,6 +708,51 @@
         </div>
 
     </main>
+
+    <!-- NEO-BRUTALISM DONATE MODAL POPUP (LOADS ./donate.png) -->
+    <div id="donate-modal" onclick="handleDonateBackdropClick(event)" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/65 backdrop-blur-xs">
+        <div class="neo-card !mb-0 max-w-sm w-full p-5 sm:p-6 text-center relative bg-white">
+            <!-- Close Button -->
+            <button type="button" onclick="closeDonateModal()" class="neo-btn bg-rose-100 hover:bg-rose-200 text-slate-900 w-9 h-9 rounded-xl absolute top-4 right-4 text-base" title="Đóng">
+                <i class="ph-bold ph-x"></i>
+            </button>
+
+            <!-- Top Badge -->
+            <div class="inline-flex items-center gap-1.5 bg-vibe-yellow text-slate-900 neo-border-sm px-3 py-1 rounded-full text-xs font-extrabold mb-2 shadow-neo-sm">
+                <span>🧋 NUÔI DEV LY TRÀ SỮA</span>
+            </div>
+
+            <h3 class="font-display font-extrabold text-xl text-slate-900 m-0">Ủng hộ HUYNH HUU DAT</h3>
+            <p class="text-xs font-semibold text-slate-600 mt-1 mb-3.5">
+                Cảm ơn bạn đã tiếp thêm động lực để mình duy trì web miễn phí & không quảng cáo! ❤️‍🔥
+            </p>
+
+            <!-- QR Image Container (Loads ./donate.png from Repo Root with Smart Fallbacks) -->
+            <div class="bg-slate-50 p-3 rounded-2xl neo-border shadow-neo-sm mb-3.5">
+                <img
+                    id="donate-qr-img"
+                    src="./donate.png"
+                    alt="QR Donate HUYNH HUU DAT"
+                    class="w-full max-w-[260px] mx-auto rounded-xl object-contain block bg-white"
+                    onerror="if(!this.dataset.fallback1){this.dataset.fallback1='1';this.src='https://raw.githubusercontent.com/hhd-z/CreateQRCode/main/donate.png';}else if(!this.dataset.fallback2){this.dataset.fallback2='1';this.src='https://api.qrserver.com/v1/create-qr-code/?size=300x300&margin=15&color=00429B&bgcolor=FFFFFF&data=00020101021138620010A00000072701320006970454011899ZP25293M108090930208QRIBFTTA53037045802VN62190815ZP252931521586663042B49';}"
+                >
+            </div>
+
+            <div class="bg-lime-100 neo-border-sm rounded-xl p-2.5 text-xs font-extrabold text-slate-900 mb-4">
+                ✨ Quét bằng ZaloPay, MoMo hoặc hơn 50+ App Ngân hàng (VietQR 24/7)
+            </div>
+
+            <div class="grid grid-cols-2 gap-2.5">
+                <a href="./donate.png" download="QR-Donate-HUYNH-HUU-DAT.png" class="neo-btn bg-vibe-lime hover:bg-lime-300 text-slate-900 py-2.5 px-3 rounded-xl text-xs gap-1.5">
+                    <i class="ph-bold ph-download-simple text-base"></i>
+                    <span>Lưu ảnh QR</span>
+                </a>
+                <button type="button" onclick="closeDonateModal()" class="neo-btn bg-white hover:bg-slate-100 text-slate-900 py-2.5 px-3 rounded-xl text-xs gap-1.5">
+                    <span>Đóng lại ❤️</span>
+                </button>
+            </div>
+        </div>
+    </div>
 
     <!-- Custom Toast Notification -->
     <div id="toast-box" class="fixed bottom-5 right-5 left-5 sm:left-auto sm:max-w-sm z-50 pointer-events-none opacity-0 translate-y-4 transition-all duration-200">
@@ -740,6 +799,27 @@
             star: '<polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" fill="currentColor" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>',
             heart: '<path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" fill="currentColor"/>'
         };
+
+        // --- DONATE MODAL HANDLERS ---
+        function openDonateModal() {
+            document.getElementById('donate-modal').classList.remove('hidden');
+        }
+
+        function closeDonateModal() {
+            document.getElementById('donate-modal').classList.add('hidden');
+        }
+
+        function handleDonateBackdropClick(event) {
+            if (event.target && event.target.id === 'donate-modal') {
+                closeDonateModal();
+            }
+        }
+
+        window.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape') {
+                closeDonateModal();
+            }
+        });
 
         // --- UI STATE HELPERS ---
         function setPreviewEmptyState(message) {
